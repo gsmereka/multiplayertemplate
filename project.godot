@@ -16,7 +16,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SteamNetwork="*res://Autoloads/steam_network.gd"
+GameState="*res://scripts/game/gamestate.gd"
 
 [input]
 
