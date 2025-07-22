@@ -8,7 +8,7 @@ func host_game(player_name: String):
 	multiplayer.set_multiplayer_peer(peer)
 	emit_signal("connected")
 
-func join_game(player_name: String, address: String):
+func join_game(_player_name: String, address: String = "127.0.0.1") -> void:
 	peer = ENetMultiplayerPeer.new()
 	peer.create_client(address, 10567)
 	multiplayer.set_multiplayer_peer(peer)

@@ -1,9 +1,7 @@
 extends Node
-
-class_name PlayerRegistry
+signal players_updated()
 
 var players := {}
-signal players_updated()
 
 func register_player(id: int, name: String):
 	players[id] = _make_string_unique(name)
