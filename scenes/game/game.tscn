@@ -10,7 +10,7 @@
 [node name="ForestGround" type="Sprite2D" parent="Ground"]
 texture = ExtResource("1_7h61r")
 
-[node name="Player" type="Node2D" parent="."]
+[node name="PlayerSpawn" type="Node2D" parent="."]
 
 [node name="Top" type="Node2D" parent="."]
 
