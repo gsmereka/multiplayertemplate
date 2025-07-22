@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhdlv4p7cy2wx"]
+
+[ext_resource type="Texture2D" uid="uid://d08vr5dwfnkar" path="res://assets/map/forest_ground.png" id="1_7h61r"]
+[ext_resource type="Texture2D" uid="uid://cg5w1b78pksex" path="res://assets/map/forest_shadow.png" id="2_0sr1o"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="ForestGround" type="Sprite2D" parent="Ground"]
+texture = ExtResource("1_7h61r")
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="Top" type="Node2D" parent="."]
+
+[node name="ForestShadow" type="Sprite2D" parent="Top"]
+texture = ExtResource("2_0sr1o")
