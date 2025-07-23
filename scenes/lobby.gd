@@ -7,9 +7,6 @@ func _ready():
 	GameState.error_occurred.connect(_on_error)
 	
 func _refresh_players():
-	#player_list_ui.clear()
-	#for name in PlayerRegistry.players.values():
-		#player_list_ui.add_item(name)
 	pass
 
 func _on_host_pressed():

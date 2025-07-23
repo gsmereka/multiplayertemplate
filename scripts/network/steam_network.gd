@@ -5,6 +5,7 @@ var peer: SteamMultiplayerPeer
 func _ready():
 	Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_created.connect(_on_lobby_created)
+	Steam.join_requested.connect(_on_join_requested)
 
 func host_game(player_name: String):
 	Steam.createLobby(Steam.LOBBY_TYPE_PUBLIC, 12)
@@ -31,3 +32,7 @@ func _on_lobby_joined(lobby_id: int, _a, _b, response: int):
 		emit_signal("connected")
 	else:
 		emit_signal("error", "Failed to join Steam lobby.")
+   # Código dentro do seu script principal (por exemplo, game.gd)
+
+func _on_join_requested(lobby_id):
+	Steam.joinLobby(lobby_id)
