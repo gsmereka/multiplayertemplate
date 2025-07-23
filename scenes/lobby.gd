@@ -16,8 +16,12 @@ func _on_host_pressed():
 	GameState.host_game($Name.text)
 
 func _on_join_pressed():
-	var addr = $ENetAddressEntry.text
+	var addr : String = $TabContainer/ENet/Players/MarginContainer/VBoxContainer/Address.text
+	if addr.is_empty():
+		addr = "127.0.0.1"
 	GameState.join_game($Name.text, addr)
+
+
 
 func _on_error(message: String):
 	print("Erro:", message)

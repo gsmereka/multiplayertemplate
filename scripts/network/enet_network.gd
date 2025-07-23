@@ -9,8 +9,22 @@ func host_game(player_name: String):
 	emit_signal("connected")
 
 func join_game(_player_name: String, address: String = "127.0.0.1") -> void:
+	print("Criando ENet peer...")
 	peer = ENetMultiplayerPeer.new()
-	peer.create_client(address, 10567)
+
+	print("Tentando conectar no endereço %s..." % address)
+	var error = peer.create_client(address, 10567)
+	print("Resultado da conexão: ", error) # Deve retornar OK (0)
+
+	if error != OK:
+		push_error("Erro ao criar cliente ENet: %s" % error)
+		return
+
+	print("Configurando multiplayer peer...")
 	multiplayer.set_multiplayer_peer(peer)
+
+	print("Aguardando conexão com o servidor...")
 	await multiplayer.connected_to_server
+	print("Conectado com sucesso!")
+
 	emit_signal("connected")

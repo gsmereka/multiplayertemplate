@@ -42,3 +42,5 @@ script = ExtResource("3_gmlin")
 
 [node name="InputsSync" type="MultiplayerSynchronizer" parent="Inputs"]
 replication_config = SubResource("SceneReplicationConfig_lvxji")
+
+[node name="Camera2D" type="Camera2D" parent="."]

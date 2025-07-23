@@ -2,6 +2,7 @@ extends Node
 
 @export var network: NetworkInterface
 
+var	is_hosting_game := false
 var player_name: String  # <--- agora declarado
 
 signal game_started()
@@ -17,6 +18,7 @@ func _ready():
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 
 func host_game(new_player_name: String):
+	is_hosting_game = true;
 	player_name = new_player_name
 	network.host_game(player_name)
 
@@ -26,6 +28,7 @@ func join_game(new_player_name: String, address: String = ""):
 
 func _on_connected():
 	PlayerRegistry.register_player(multiplayer.get_unique_id(), player_name)
+	load_game()
 
 func _on_error(message: String):
 	print("Network error: ", message)
@@ -44,3 +47,8 @@ func _on_peer_connected(id: int):
 
 func _on_peer_disconnected(id: int):
 	PlayerRegistry.unregister_player(id)
+
+const gameScene = "res://scenes/game/game.tscn"
+func	load_game():
+	get_tree().call_deferred(&"change_scene_to_packed", preload(gameScene))
+	pass

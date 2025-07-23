@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhdlv4p7cy2wx"]
+[gd_scene load_steps=5 format=3 uid="uid://bhdlv4p7cy2wx"]
 
 [ext_resource type="Texture2D" uid="uid://d08vr5dwfnkar" path="res://assets/map/forest_ground.png" id="1_7h61r"]
 [ext_resource type="Texture2D" uid="uid://cg5w1b78pksex" path="res://assets/map/forest_shadow.png" id="2_0sr1o"]
+[ext_resource type="PackedScene" uid="uid://dmx480t4ouqqh" path="res://scenes/multiplayer_manager.tscn" id="3_kelw5"]
+[ext_resource type="Script" uid="uid://cqhvum1j30e85" path="res://scenes/multiplayer_manager.gd" id="4_lfrn8"]
 
 [node name="Game" type="Node2D"]
 
@@ -16,3 +18,11 @@ texture = ExtResource("1_7h61r")
 
 [node name="ForestShadow" type="Sprite2D" parent="Top"]
 texture = ExtResource("2_0sr1o")
+
+[node name="MultiplayerManager" parent="." node_paths=PackedStringArray("_player_spawn_point") instance=ExtResource("3_kelw5")]
+script = ExtResource("4_lfrn8")
+_player_spawn_point = NodePath("../PlayerSpawn")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://wsqekb8cav1t")
+spawn_path = NodePath("../PlayerSpawn")
