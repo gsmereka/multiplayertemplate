@@ -15,7 +15,7 @@ func _ready():
 		get_node("Inputs/InputsSync").set_multiplayer_authority(str(name).to_int())
 
 	# Habilita a câmera apenas se este player é o dono (autoridade local)
-	
+	print(PlayerRegistry.players)
 	if is_multiplayer_authority():
 		camera.enabled = true
 		print(name + " yes")
