@@ -16,12 +16,13 @@ func _ready():
 
 	# Habilita a câmera apenas se este player é o dono (autoridade local)
 	print(PlayerRegistry.players)
-	if is_multiplayer_authority():
-		camera.enabled = true
-		print(name + " yes")
-	else:
-		camera.enabled = false
-		print(name + " no")
+	print(name)
+	#if is_multiplayer_authority():
+		#camera.enabled = true
+		#print(name + " yes")
+	#else:
+		#camera.enabled = false
+		#print(name + " no")
 
 
 func _physics_process(delta):
