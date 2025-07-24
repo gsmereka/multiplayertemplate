@@ -14,21 +14,21 @@ func _ready():
 	if str(name).is_valid_int():
 		get_node("Inputs/InputsSync").set_multiplayer_authority(str(name).to_int())
 
-	# Habilita a câmera apenas se este player é o dono (autoridade local)
-	print(PlayerRegistry.players)
-	if is_multiplayer_authority():
-		camera.enabled = true
-		print(name + " yes")
-	else:
-		camera.enabled = false
-		print(name + " no")
+	if str(multiplayer.get_unique_id()) == str(name):
+		$Camera2D.enabled = true
+	## Habilita a câmera apenas se este player é o dono (auts
+	#if is_multiplayer_authority():
+		#camera.enabled = true
+		#print(name + " yes")
+	#else:
+		#camera.enabled = false
+		#print(name + " no")
 
 
 func _physics_process(delta):
 	if str(multiplayer.get_unique_id()) == str(name):
 		inputs.update()
-
-	if is_multiplayer_authority():
-		velocity = inputs.motion * MOTION_SPEED
-		move_and_slide()
-		look_at(inputs.mouse_pos)
+	#if is_multiplayer_authority():
+	velocity = inputs.motion * MOTION_SPEED
+	move_and_slide()
+	look_at(inputs.mouse_pos)
