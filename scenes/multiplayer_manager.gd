@@ -13,7 +13,7 @@ func _ready():
 		multiplayer.peer_connected.connect(_client_connected)
 		multiplayer.peer_disconnected.connect(_client_disconnected)
 		if not OS.has_feature("dedicated_server"):
-			_add_player_to_game(1)
+			_add_player_to_game(multiplayer.get_unique_id())
 		pass # Replace with function body.
 
 func _add_player_to_game(network_id):
