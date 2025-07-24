@@ -9,7 +9,6 @@ const MOTION_SPEED = 180.0
 @onready var camera = $Camera2D
 
 func _ready():
-	await get_tree().process_frame
 	print("Player spawned: ", name)
 
 	if str(name).is_valid_int():
