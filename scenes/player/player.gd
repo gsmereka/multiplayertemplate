@@ -9,14 +9,13 @@ const MOTION_SPEED = 180.0
 @onready var camera = $Camera2D
 
 func _ready():
+	await get_tree().process_frame
 	print("Player spawned: ", name)
 
 	if str(name).is_valid_int():
 		get_node("Inputs/InputsSync").set_multiplayer_authority(str(name).to_int())
 
-	# Habilita a câmera apenas se este player é o dono (autoridade local)
-	print(PlayerRegistry.players)
-	print(name)
+	## Habilita a câmera apenas se este player é o dono (auts
 	#if is_multiplayer_authority():
 		#camera.enabled = true
 		#print(name + " yes")
@@ -28,8 +27,9 @@ func _ready():
 func _physics_process(delta):
 	if str(multiplayer.get_unique_id()) == str(name):
 		inputs.update()
+		$Camera2D.enabled = true
 
-	if is_multiplayer_authority():
-		velocity = inputs.motion * MOTION_SPEED
-		move_and_slide()
-		look_at(inputs.mouse_pos)
+	#if is_multiplayer_authority():
+	velocity = inputs.motion * MOTION_SPEED
+	move_and_slide()
+	look_at(inputs.mouse_pos)
