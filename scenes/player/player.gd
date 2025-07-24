@@ -15,6 +15,8 @@ func _ready():
 	if str(name).is_valid_int():
 		get_node("Inputs/InputsSync").set_multiplayer_authority(str(name).to_int())
 
+	if str(multiplayer.get_unique_id()) == str(name):
+		$Camera2D.enabled = true
 	## Habilita a câmera apenas se este player é o dono (auts
 	#if is_multiplayer_authority():
 		#camera.enabled = true
@@ -27,8 +29,6 @@ func _ready():
 func _physics_process(delta):
 	if str(multiplayer.get_unique_id()) == str(name):
 		inputs.update()
-		$Camera2D.enabled = true
-
 	#if is_multiplayer_authority():
 	velocity = inputs.motion * MOTION_SPEED
 	move_and_slide()
