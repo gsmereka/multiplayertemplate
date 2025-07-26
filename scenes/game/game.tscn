@@ -12,6 +12,7 @@
 texture = ExtResource("1_7h61r")
 
 [node name="PlayerSpawn" type="Node2D" parent="."]
+position = Vector2(-1814, 1859)
 
 [node name="Top" type="Node2D" parent="."]
 
