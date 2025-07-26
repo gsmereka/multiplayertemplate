@@ -34,7 +34,7 @@ func _remove_player_to_game(network_id):
 			_players_in_game.erase(network_id)
 	pass
 
-func _ready_player(player: Player):
+func _ready_player(player: Node2D):
 	player.position = Vector2(randi_range(-2, 2), randi_range(-2, 2))
 	pass
 
@@ -53,7 +53,9 @@ const next_scene = preload("res://scenes/game/game.tscn")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if GameState.is_hosting_game and Input.is_key_pressed(KEY_SPACE):
-		recharge_scene_for_all.rpc()
+		#recharge_scene_for_all.rpc()
+		pass 
+	pass
 
 @rpc("call_local", "any_peer")
 func change_scene_for_all():
