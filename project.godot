@@ -22,6 +22,14 @@ GameState="*res://scripts/game/gamestate.gd"
 EnetNetwork="*res://scripts/network/enet_network.gd"
 PlayerRegistry="*res://scripts/game/player_resgistry.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/window_width_override=1152
+window/size/window_height_override=648
+window/stretch/mode="viewport"
+
 [input]
 
 up={
