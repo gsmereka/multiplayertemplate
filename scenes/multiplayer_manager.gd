@@ -39,12 +39,12 @@ func _ready_player(player: Node2D):
 	pass
 
 func _client_connected(network_id):
-	print("Client Connected ", str(network_id))
+	#print("Client Connected ", str(network_id))
 	_add_player_to_game(network_id)
 	pass
 
 func _client_disconnected(network_id):
-	print("Client Disconnected ", str(network_id))
+	#print("Client Disconnected ", str(network_id))
 	_remove_player_to_game(network_id)
 	pass
 
@@ -52,9 +52,9 @@ const next_scene = preload("res://scenes/game/game.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if GameState.is_hosting_game and Input.is_key_pressed(KEY_SPACE):
+	#if GameState.is_hosting_game and Input.is_key_pressed(KEY_SPACE):
 		#recharge_scene_for_all.rpc()
-		pass 
+		#pass 
 	pass
 
 @rpc("call_local", "any_peer")
