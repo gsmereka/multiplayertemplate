@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://wsqekb8cav1t"]
+[gd_scene load_steps=11 format=3 uid="uid://wsqekb8cav1t"]
 
 [ext_resource type="Texture2D" uid="uid://c48ucov8jdbr0" path="res://assets/player/player.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://b24nt2q2yh8wf" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Script" uid="uid://d23s71hk84b6x" path="res://scenes/player/inputs.gd" id="3_gmlin"]
+[ext_resource type="Script" uid="uid://d1pqf47bbrtbe" path="res://scenes/player/states/FiniteStateMachine.gd" id="3_lvxji"]
+[ext_resource type="Script" uid="uid://c0x4xfbeiv7ud" path="res://scenes/player/states/state_idle.gd" id="4_p47bc"]
+[ext_resource type="Script" uid="uid://c3vd0cp82i2d7" path="res://scenes/player/states/freeze.gd" id="5_75vfm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8afob"]
 radius = 27.2947
@@ -11,10 +14,10 @@ radius = 27.2947
 properties/0/path = NodePath(".:rotation")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath(".:synced_position")
+properties/1/path = NodePath(".:position")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath(".:position")
+properties/2/path = NodePath(".:modulate")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
@@ -26,8 +29,11 @@ properties/1/path = NodePath(".:mouse_pos")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_p47bc"]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_dovo2")
+color = Color(0.733333, 0.6, 0, 1)
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(59, 0)
@@ -46,5 +52,25 @@ script = ExtResource("3_gmlin")
 [node name="InputsSync" type="MultiplayerSynchronizer" parent="Inputs"]
 replication_config = SubResource("SceneReplicationConfig_lvxji")
 
+[node name="States" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_lvxji")
+initial_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="States" node_paths=PackedStringArray("player", "inputs")]
+script = ExtResource("4_p47bc")
+player = NodePath("../..")
+inputs = NodePath("../../Inputs")
+metadata/_custom_type_script = "uid://s1feqfw0yldx"
+
+[node name="freeze" type="Node" parent="States" node_paths=PackedStringArray("player")]
+script = ExtResource("5_75vfm")
+player = NodePath("../..")
+
+[node name="StateSync" type="MultiplayerSynchronizer" parent="States"]
+replication_config = SubResource("SceneReplicationConfig_p47bc")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(151, 0)
