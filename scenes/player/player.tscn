@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://wsqekb8cav1t"]
+[gd_scene load_steps=12 format=3 uid="uid://wsqekb8cav1t"]
 
 [ext_resource type="Texture2D" uid="uid://c48ucov8jdbr0" path="res://assets/player/player.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://b24nt2q2yh8wf" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="Texture2D" uid="uid://dtbeoupwqbpyn" path="res://assets/loading_screen.png" id="2_0owmy"]
 [ext_resource type="Script" uid="uid://d23s71hk84b6x" path="res://scenes/player/inputs.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://d1pqf47bbrtbe" path="res://scenes/player/states/FiniteStateMachine.gd" id="3_lvxji"]
 [ext_resource type="Script" uid="uid://c0x4xfbeiv7ud" path="res://scenes/player/states/state_idle.gd" id="4_p47bc"]
@@ -22,18 +23,39 @@ properties/2/spawn = true
 properties/2/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lvxji"]
-properties/0/path = NodePath(".:motion")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:mouse_pos")
-properties/1/spawn = true
-properties/1/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_p47bc"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputs", "states", "camera", "collision_shape", "canvas", "interface")]
 script = ExtResource("1_dovo2")
-color = Color(0.733333, 0.6, 0, 1)
+inputs = NodePath("Inputs")
+states = NodePath("States")
+camera = NodePath("Camera2D")
+collision_shape = NodePath("CollisionShape2D")
+canvas = NodePath("CanvasLayer")
+interface = NodePath("CanvasLayer/Control")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Loading" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_0owmy")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(59, 0)
