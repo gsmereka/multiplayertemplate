@@ -11,24 +11,23 @@ const MOTION_SPEED = 180.0
 @export var collision_shape : CollisionShape2D
 @export var canvas : CanvasLayer
 @export var interface : Control
+@export var loadingScene : Node
 
 func _enter_tree():
-	set_multiplayer_authority(str(name).to_int())
 	is_local_player = is_multiplayer_authority()
 	if is_local_player:
-		hide()
 		canvas.visible = true
 		camera.enabled = true
 
 func _ready() -> void:
+	states.force_change_state("freeze")
 	if is_local_player:
 		_setup_player()
 
 func _setup_player():
 	await get_tree().create_timer(2.0).timeout
 	global_position = get_parent().global_position
-	$CanvasLayer/Control/Loading.hide()
-	show()
+	states.force_change_state("idle")
 	pass
 
 func _physics_process(delta):

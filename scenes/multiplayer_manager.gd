@@ -21,6 +21,7 @@ func _add_player_to_game2(network_id):
 	var	player_to_add = _player_scene.instantiate()
 	player_to_add.name = str(network_id);
 	_players_in_game[network_id] = player_to_add
+	player_to_add.set_multiplayer_authority(network_id)
 	return player_to_add
 
 func _add_player_to_game(network_id):
