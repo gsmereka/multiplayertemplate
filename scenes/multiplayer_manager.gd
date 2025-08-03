@@ -4,15 +4,24 @@ var	_player_scene = preload("res://scenes/player/player.tscn")
 @export var _player_spawn_point: Node2D
 var	_players_in_game: Dictionary = {}
 
+@export var spawner : MultiplayerSpawner
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	spawner.spawn_function = _add_player_to_game2
 	await  get_tree().process_frame
 	if GameState.is_hosting_game:
 		multiplayer.peer_connected.connect(_client_connected)
 		multiplayer.peer_disconnected.connect(_client_disconnected)
 		for network_id in PlayerRegistry.players.keys():
-			_add_player_to_game(network_id)
+			spawner.spawn(network_id)
 		pass
+
+func _add_player_to_game2(network_id):
+	#print("Adding player to game: ", str(network_id))
+	var	player_to_add = _player_scene.instantiate()
+	player_to_add.name = str(network_id);
+	_players_in_game[network_id] = player_to_add
+	return player_to_add
 
 func _add_player_to_game(network_id):
 	#print("Adding player to game: ", str(network_id))
@@ -36,8 +45,7 @@ func _remove_player_to_game(network_id):
 
 func _client_connected(network_id):
 	#print("Client Connected ", str(network_id))
-	_add_player_to_game(network_id)
-	pass
+	spawner.spawn(network_id)
 
 func _client_disconnected(network_id):
 	#print("Client Disconnected ", str(network_id))

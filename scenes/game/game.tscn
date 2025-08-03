@@ -19,8 +19,9 @@ position = Vector2(-1814, 1859)
 [node name="ForestShadow" type="Sprite2D" parent="Top"]
 texture = ExtResource("2_0sr1o")
 
-[node name="MultiplayerManager" parent="." node_paths=PackedStringArray("_player_spawn_point") instance=ExtResource("3_kelw5")]
+[node name="MultiplayerManager" parent="." node_paths=PackedStringArray("_player_spawn_point", "spawner") instance=ExtResource("3_kelw5")]
 _player_spawn_point = NodePath("../PlayerSpawn")
+spawner = NodePath("../MultiplayerSpawner")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://wsqekb8cav1t")
