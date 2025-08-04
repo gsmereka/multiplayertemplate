@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://wsqekb8cav1t"]
+[gd_scene load_steps=10 format=3 uid="uid://wsqekb8cav1t"]
 
 [ext_resource type="Texture2D" uid="uid://c48ucov8jdbr0" path="res://assets/player/player.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://b24nt2q2yh8wf" path="res://scenes/player/player.gd" id="1_dovo2"]
@@ -27,10 +27,6 @@ properties/3/replication_mode = 1
 properties/4/path = NodePath("CollisionShape2D:disabled")
 properties/4/spawn = true
 properties/4/replication_mode = 1
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lvxji"]
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_p47bc"]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputs", "states", "camera", "collision_shape", "canvas", "interface", "loadingScene")]
 motion_mode = 1
@@ -80,9 +76,6 @@ replication_config = SubResource("SceneReplicationConfig_gmlin")
 [node name="Inputs" type="Node" parent="."]
 script = ExtResource("3_gmlin")
 
-[node name="InputsSync" type="MultiplayerSynchronizer" parent="Inputs"]
-replication_config = SubResource("SceneReplicationConfig_lvxji")
-
 [node name="States" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_lvxji")
 initial_state = NodePath("idle")
@@ -96,9 +89,6 @@ metadata/_custom_type_script = "uid://s1feqfw0yldx"
 [node name="freeze" type="Node" parent="States" node_paths=PackedStringArray("player")]
 script = ExtResource("5_75vfm")
 player = NodePath("../..")
-
-[node name="StateSync" type="MultiplayerSynchronizer" parent="States"]
-replication_config = SubResource("SceneReplicationConfig_p47bc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false

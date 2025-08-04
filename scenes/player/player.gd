@@ -25,7 +25,7 @@ func _ready() -> void:
 		_setup_player()
 
 func _setup_player():
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.1 ).timeout
 	global_position = get_parent().global_position
 	states.force_change_state("idle")
 	pass
