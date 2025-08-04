@@ -11,7 +11,7 @@ func Enter():
 	
 func Update(_delta:float):
 	if Input.is_action_just_pressed("space"):
-		get_parent().change_state(self, "freeze")
+		Craft()
 	#if inputs:
 	player.velocity = inputs.motion * MOTION_SPEED
 	player.look_at(inputs.mouse_pos)
@@ -24,3 +24,13 @@ func Process_update(_delta:float):
 func Exit():
 	pass
 	
+func Craft():
+	var node = load("res://scenes/objects/object.tscn")
+	var node2 = node.instantiate()
+	node2.global_position = player.global_position
+	node2.global_position.x += 50
+	var manager = player.get_parent().get_parent().get_node("ObjectsManager")
+	if manager:
+		manager.set_to_spawn.rpc(node2)
+	print(manager)
+	pass
