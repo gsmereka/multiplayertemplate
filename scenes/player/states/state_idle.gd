@@ -23,7 +23,7 @@ func Process_update(_delta:float):
 	
 func Exit():
 	pass
-	
+
 func Craft():
 	var node = load("res://scenes/objects/object.tscn")
 	var node2 = node.instantiate()
@@ -31,6 +31,9 @@ func Craft():
 	node2.global_position.x += 50
 	var manager = player.get_parent().get_parent().get_node("ObjectsManager")
 	if manager:
-		manager.set_to_spawn.rpc(node2)
+		if multiplayer.is_server():
+			manager.set_to_spawn(node2)
+		else:
+			manager.set_to_spawn.rpc_id(1, node2)
 	print(manager)
 	pass
