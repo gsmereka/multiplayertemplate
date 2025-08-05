@@ -8,7 +8,10 @@ func Enter():
 	player.visible = true;
 	player.modulate = Color(1,1,1)
 	pass
-	
+
+
+var selected_object_type := ObjectRegistry.ObjectType.TREE  # Default
+
 func Update(_delta:float):
 	if Input.is_action_just_pressed("space"):
 		Craft()
@@ -16,6 +19,13 @@ func Update(_delta:float):
 	player.velocity = inputs.motion * MOTION_SPEED
 	player.look_at(inputs.mouse_pos)
 	player.move_and_slide()
+	
+	if Input.is_action_just_pressed("ui_select"):
+		selected_object_type = ObjectRegistry.ObjectType.DEFAULT
+	elif Input.is_action_just_pressed("ui_left"):
+		selected_object_type = ObjectRegistry.ObjectType.TREE
+	elif Input.is_action_just_pressed("ui_right"):
+		selected_object_type = ObjectRegistry.ObjectType.CRATE
 	pass
 
 func Process_update(_delta:float):
@@ -25,15 +35,9 @@ func Exit():
 	pass
 
 func Craft():
-	var node = load("res://scenes/objects/object.tscn")
-	var node2 = node.instantiate()
-	node2.global_position = player.global_position
-	node2.global_position.x += 50
-	var manager = player.get_parent().get_parent().get_node("ObjectsManager")
-	if manager:
-		if multiplayer.is_server():
-			manager.set_to_spawn(node2)
-		else:
-			manager.set_to_spawn.rpc_id(1, node2)
-	print(manager)
+	var offset := Vector2(50,0)
+	var spawn_pos := player.global_position + offset
+	var rot := player.rotation
+	var estado := "ativo"
+	ObjectRegistry.request_spawn.rpc_id(1,selected_object_type, spawn_pos, rot, estado)
 	pass

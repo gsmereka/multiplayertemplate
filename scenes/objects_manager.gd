@@ -4,6 +4,7 @@ extends Node
 @onready var topS := $MultiplayerSpawnerTop
 
 func _ready() -> void:
+	ObjectRegistry.node_spawner = $"../Ground/ObjectsGroundSpawn"
 	groundS.spawn_function = spawn_object
 	topS.spawn_function = spawn_object
 	pass
