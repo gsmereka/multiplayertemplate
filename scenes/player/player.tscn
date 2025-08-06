@@ -78,14 +78,8 @@ script = ExtResource("3_5gtgg")
 [node name="RayCast2D" type="RayCast2D" parent="Weapon"]
 target_position = Vector2(1200, 0)
 
-[node name="Player-ParaOOutroLado" type="Sprite2D" parent="Weapon"]
-modulate = Color(80, 80, 80, 0.536)
-position = Vector2(22, 6)
-rotation = 1.5708
-scale = Vector2(3.1, 2)
-texture = ExtResource("3_qek5x")
-
 [node name="Fire" type="Sprite2D" parent="Weapon"]
+visible = false
 modulate = Color(0.99498, 0.963131, 0.281134, 1)
 position = Vector2(630, 1)
 scale = Vector2(1.161, 0.002)
@@ -98,6 +92,13 @@ replication_config = SubResource("SceneReplicationConfig_h17s1")
 position = Vector2(59, 0)
 rotation = 1.5708
 texture = ExtResource("1_8afob")
+
+[node name="Player-ParaOOutroLado" type="Sprite2D" parent="Sprite"]
+modulate = Color(80, 80, 80, 0.536)
+show_behind_parent = true
+position = Vector2(5.00014, 38)
+scale = Vector2(3.1, 2)
+texture = ExtResource("3_qek5x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8afob")
