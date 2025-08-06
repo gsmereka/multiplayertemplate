@@ -13,6 +13,7 @@ const MOTION_SPEED = 180.0
 @export var interface : Control
 @export var loadingScene : Node
 @export var weapon : Weapon
+@export var current_state: String = "freeze"
 
 func _enter_tree():
 	is_local_player = is_multiplayer_authority()

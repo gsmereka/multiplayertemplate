@@ -29,13 +29,16 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 properties/2/path = NodePath(".:modulate")
 properties/2/spawn = true
-properties/2/replication_mode = 1
+properties/2/replication_mode = 2
 properties/3/path = NodePath(".:visible")
 properties/3/spawn = true
-properties/3/replication_mode = 1
+properties/3/replication_mode = 2
 properties/4/path = NodePath("CollisionShape2D:disabled")
 properties/4/spawn = true
-properties/4/replication_mode = 1
+properties/4/replication_mode = 2
+properties/5/path = NodePath(".:current_state")
+properties/5/spawn = true
+properties/5/replication_mode = 2
 
 [sub_resource type="GDScript" id="GDScript_h17s1"]
 script/source = "extends State
@@ -158,9 +161,10 @@ replication_config = SubResource("SceneReplicationConfig_gmlin")
 [node name="Inputs" type="Node" parent="."]
 script = ExtResource("3_gmlin")
 
-[node name="States" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="States" type="Node" parent="." node_paths=PackedStringArray("initial_state", "player")]
 script = ExtResource("3_lvxji")
 initial_state = NodePath("idle")
+player = NodePath("..")
 
 [node name="idle_backup" type="Node" parent="States" node_paths=PackedStringArray("player", "inputs")]
 script = ExtResource("9_h17s1")
