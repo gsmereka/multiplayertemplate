@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://wsqekb8cav1t"]
+[gd_scene load_steps=15 format=3 uid="uid://wsqekb8cav1t"]
 
 [ext_resource type="Texture2D" uid="uid://c48ucov8jdbr0" path="res://assets/player/player.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://b24nt2q2yh8wf" path="res://scenes/player/player.gd" id="1_dovo2"]
@@ -35,6 +35,56 @@ properties/3/replication_mode = 1
 properties/4/path = NodePath("CollisionShape2D:disabled")
 properties/4/spawn = true
 properties/4/replication_mode = 1
+
+[sub_resource type="GDScript" id="GDScript_h17s1"]
+script/source = "extends State
+
+@export var player: CharacterBody2D
+@export var inputs: Node
+@onready var MOTION_SPEED = player.MOTION_SPEED
+
+func Enter():
+	player.visible = true;
+	player.modulate = Color(1,1,1)
+	pass
+
+
+var selected_object_type := ObjectRegistry.ObjectType.TREE  # Default
+
+func Update(_delta:float):
+	if Input.is_action_just_pressed(\"space\"):
+		Craft()
+		
+	if player.weapon:
+		if Input.is_action_just_pressed(\"left_click\"):
+			player.weapon.Fire()
+	#if inputs:
+	player.velocity = inputs.motion * MOTION_SPEED
+	player.look_at(inputs.mouse_pos)
+	player.move_and_slide()
+	
+	if Input.is_action_just_pressed(\"ui_select\"):
+		selected_object_type = ObjectRegistry.ObjectType.DEFAULT
+	elif Input.is_action_just_pressed(\"ui_left\"):
+		selected_object_type = ObjectRegistry.ObjectType.TREE
+	elif Input.is_action_just_pressed(\"ui_right\"):
+		selected_object_type = ObjectRegistry.ObjectType.CRATE
+	pass
+
+func Process_update(_delta:float):
+	pass
+	
+func Exit():
+	pass
+
+func Craft():
+	var offset := Vector2(50,0)
+	var spawn_pos := player.global_position + offset
+	var rot := player.rotation
+	var estado := \"ativo\"
+	ObjectRegistry.request_spawn.rpc_id(1,selected_object_type, spawn_pos, rot, estado)
+	pass
+"
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputs", "states", "camera", "collision_shape", "canvas", "interface", "loadingScene", "weapon")]
 motion_mode = 1
@@ -112,6 +162,18 @@ script = ExtResource("3_gmlin")
 [node name="States" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_lvxji")
 initial_state = NodePath("idle")
+
+[node name="idle_backup" type="Node" parent="States" node_paths=PackedStringArray("player", "inputs")]
+script = ExtResource("4_p47bc")
+player = NodePath("../..")
+inputs = NodePath("../../Inputs")
+metadata/_custom_type_script = "uid://s1feqfw0yldx"
+
+[node name="craft" type="Node" parent="States" node_paths=PackedStringArray("player", "inputs")]
+script = SubResource("GDScript_h17s1")
+player = NodePath("../..")
+inputs = NodePath("../../Inputs")
+metadata/_custom_type_script = "uid://s1feqfw0yldx"
 
 [node name="idle" type="Node" parent="States" node_paths=PackedStringArray("player", "inputs")]
 script = ExtResource("4_p47bc")

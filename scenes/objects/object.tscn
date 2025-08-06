@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bokfkixk25s8k"]
 
-[ext_resource type="Script" uid="uid://4cimcrk3642x" path="res://scenes/objects/object.gd" id="1_3fnx3"]
+[ext_resource type="Script" uid="uid://4cimcrk3642x" path="res://scenes/objects/object_class.gd" id="1_3fnx3"]
 [ext_resource type="Texture2D" uid="uid://b5r0s2bjutwd4" path="res://assets/objects/mesa 1.png" id="1_toi83"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fnx3"]

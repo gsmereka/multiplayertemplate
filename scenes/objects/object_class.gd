@@ -4,7 +4,7 @@ class_name ObjectClass
 
 @export var hp = 3
 
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "reliable", "call_local")
 func take_damage():
 	if !multiplayer.is_server():
 		return
