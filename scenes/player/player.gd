@@ -35,6 +35,7 @@ func _physics_process(delta):
 	if is_local_player:
 		inputs.update()
 
+var hp = 3
 @rpc("any_peer", "call_local")
 func take_damage():
 	var passo : float = 0.1
@@ -44,7 +45,11 @@ func take_damage():
 	cor_atual.r = max(cor_atual.r - passo, 0)
 	cor_atual.g = max(cor_atual.g - passo, 0)
 	cor_atual.b = max(cor_atual.b - passo, 0)
-
+	
+	hp -= 1
+	if hp <= 0:
+		states.force_change_state("death_cam")
+		hp = 3
 	# Aplica a nova cor
 	modulate = cor_atual
 	
