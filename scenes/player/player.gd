@@ -12,6 +12,7 @@ const MOTION_SPEED = 180.0
 @export var canvas : CanvasLayer
 @export var interface : Control
 @export var loadingScene : Node
+@export var weapon : Weapon
 
 func _enter_tree():
 	is_local_player = is_multiplayer_authority()

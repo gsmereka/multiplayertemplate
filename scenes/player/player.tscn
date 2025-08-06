@@ -1,12 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://wsqekb8cav1t"]
+[gd_scene load_steps=14 format=3 uid="uid://wsqekb8cav1t"]
 
 [ext_resource type="Texture2D" uid="uid://c48ucov8jdbr0" path="res://assets/player/player.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://b24nt2q2yh8wf" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://dtbeoupwqbpyn" path="res://assets/loading_screen.png" id="2_0owmy"]
+[ext_resource type="Script" uid="uid://bv6oj48uda32v" path="res://scenes/weapon/weapon.gd" id="3_5gtgg"]
 [ext_resource type="Script" uid="uid://d23s71hk84b6x" path="res://scenes/player/inputs.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://d1pqf47bbrtbe" path="res://scenes/player/states/FiniteStateMachine.gd" id="3_lvxji"]
+[ext_resource type="Texture2D" uid="uid://78dlafcg4suy" path="res://assets/player/player - para o outro lado.png" id="3_qek5x"]
 [ext_resource type="Script" uid="uid://c0x4xfbeiv7ud" path="res://scenes/player/states/state_idle.gd" id="4_p47bc"]
 [ext_resource type="Script" uid="uid://c3vd0cp82i2d7" path="res://scenes/player/states/freeze.gd" id="5_75vfm"]
+[ext_resource type="Texture2D" uid="uid://5jbkwel4cdwy" path="res://assets/cw.png" id="5_h17s1"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_h17s1"]
+properties/0/path = NodePath("Fire:visible")
+properties/0/spawn = true
+properties/0/replication_mode = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8afob"]
 radius = 27.2947
@@ -28,9 +36,11 @@ properties/4/path = NodePath("CollisionShape2D:disabled")
 properties/4/spawn = true
 properties/4/replication_mode = 1
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputs", "states", "camera", "collision_shape", "canvas", "interface", "loadingScene")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputs", "states", "camera", "collision_shape", "canvas", "interface", "loadingScene", "weapon")]
 motion_mode = 1
 script = ExtResource("1_dovo2")
+is_local_player = null
+color = null
 inputs = NodePath("Inputs")
 states = NodePath("States")
 camera = NodePath("Camera2D")
@@ -38,6 +48,7 @@ collision_shape = NodePath("CollisionShape2D")
 canvas = NodePath("CanvasLayer")
 interface = NodePath("CanvasLayer/Control")
 loadingScene = NodePath("CanvasLayer/Control/Loading")
+weapon = NodePath("Weapon")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -60,6 +71,28 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_0owmy")
+
+[node name="Weapon" type="Node2D" parent="."]
+script = ExtResource("3_5gtgg")
+
+[node name="RayCast2D" type="RayCast2D" parent="Weapon"]
+target_position = Vector2(1200, 0)
+
+[node name="Player-ParaOOutroLado" type="Sprite2D" parent="Weapon"]
+modulate = Color(80, 80, 80, 0.536)
+position = Vector2(22, 6)
+rotation = 1.5708
+scale = Vector2(3.1, 2)
+texture = ExtResource("3_qek5x")
+
+[node name="Fire" type="Sprite2D" parent="Weapon"]
+modulate = Color(0.99498, 0.963131, 0.281134, 1)
+position = Vector2(630, 1)
+scale = Vector2(1.161, 0.002)
+texture = ExtResource("5_h17s1")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Weapon"]
+replication_config = SubResource("SceneReplicationConfig_h17s1")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(59, 0)
@@ -91,6 +124,3 @@ player = NodePath("../..")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(151, 0)

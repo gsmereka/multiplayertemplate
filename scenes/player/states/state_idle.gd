@@ -15,6 +15,10 @@ var selected_object_type := ObjectRegistry.ObjectType.TREE  # Default
 func Update(_delta:float):
 	if Input.is_action_just_pressed("space"):
 		Craft()
+		
+	if player.weapon:
+		if Input.is_action_just_pressed("left_click"):
+			player.weapon.Fire()
 	#if inputs:
 	player.velocity = inputs.motion * MOTION_SPEED
 	player.look_at(inputs.mouse_pos)

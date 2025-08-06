@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bokfkixk25s8k"]
+[gd_scene load_steps=5 format=3 uid="uid://bokfkixk25s8k"]
 
+[ext_resource type="Script" uid="uid://4cimcrk3642x" path="res://scenes/objects/object.gd" id="1_3fnx3"]
 [ext_resource type="Texture2D" uid="uid://b5r0s2bjutwd4" path="res://assets/objects/mesa 1.png" id="1_toi83"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fnx3"]
@@ -14,6 +15,7 @@ properties/1/spawn = true
 properties/1/replication_mode = 2
 
 [node name="Object" type="RigidBody2D"]
+script = ExtResource("1_3fnx3")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_toi83")
