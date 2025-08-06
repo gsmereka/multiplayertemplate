@@ -9,7 +9,9 @@ func Fire():
 	if cast:
 		if cast.is_colliding():
 			var col := cast.get_collider()
-			if col.has_method("take_damage"):
+			if col is Player:
+				col.take_damage.rpc()
+			elif col.has_method("take_damage"):
 				col.take_damage.rpc_id(1)
 	await get_tree().create_timer(0.1).timeout
 	fire.hide()

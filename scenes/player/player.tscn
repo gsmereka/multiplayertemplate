@@ -89,8 +89,6 @@ func Craft():
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputs", "states", "camera", "collision_shape", "canvas", "interface", "loadingScene", "weapon")]
 motion_mode = 1
 script = ExtResource("1_dovo2")
-is_local_player = null
-color = null
 inputs = NodePath("Inputs")
 states = NodePath("States")
 camera = NodePath("Camera2D")

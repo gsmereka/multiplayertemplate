@@ -35,6 +35,19 @@ func _physics_process(delta):
 	if is_local_player:
 		inputs.update()
 
+@rpc("any_peer", "call_local")
+func take_damage():
+	var passo : float = 0.1
+	var cor_atual = modulate
+
+	# Diminui os valores R, G e B, mas garante que não fiquem abaixo de 0
+	cor_atual.r = max(cor_atual.r - passo, 0)
+	cor_atual.g = max(cor_atual.g - passo, 0)
+	cor_atual.b = max(cor_atual.b - passo, 0)
+
+	# Aplica a nova cor
+	modulate = cor_atual
+	
 #func _physics_process(delta):
 	#if Input.is_action_just_pressed("space") && is_local_player:
 		#global_position = get_parent().global_position
