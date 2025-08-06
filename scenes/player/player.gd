@@ -28,7 +28,7 @@ func _ready() -> void:
 
 func _setup_player():
 	await get_tree().create_timer(1.1 ).timeout
-	global_position = get_parent().global_position
+	teleport_to_random_spawn_point()
 	states.force_change_state("idle")
 	pass
 
@@ -53,7 +53,19 @@ func take_damage():
 		hp = 3
 	# Aplica a nova cor
 	modulate = cor_atual
-	
+
+func teleport_to_random_spawn_point():
+	if !get_parent():
+		return
+	var spawns = get_parent().get_children()
+	var points := []
+	for i in spawns:
+		if i is Marker2D:
+			points.append(i)
+	if points.is_empty():
+		global_position = get_parent().global_position
+	var index = randi() % points.size()
+	global_position = points[index].global_position
 #func _physics_process(delta):
 	#if Input.is_action_just_pressed("space") && is_local_player:
 		#global_position = get_parent().global_position

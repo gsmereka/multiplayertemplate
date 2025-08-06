@@ -45,7 +45,7 @@ func Exit():
 	pass
 
 func Revive():
-	player.global_position = player.get_parent().global_position
+	player.teleport_to_random_spawn_point()
 	player.visible = true
 	player.collision_shape.disabled = false
 	player.states.change_state(self, "idle")
@@ -58,9 +58,10 @@ func Revive():
 func _update_alive_players():
 	alive_players.clear()
 	for child in player.get_parent().get_children():
-		var cam = child.camera
-		if cam and cam is Camera2D:
-			alive_players.append(child)
+		if child is Player:
+			var cam = child.camera
+			if cam and cam is Camera2D:
+				alive_players.append(child)
 
 # Escolhe uma câmera aleatória de um player vivo
 func _select_random_death_cam():
