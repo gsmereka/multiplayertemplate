@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends StaticBody2D
 
 class_name ObjectClass
 
@@ -6,8 +6,7 @@ class_name ObjectClass
 
 @rpc("any_peer", "reliable", "call_local")
 func take_damage():
-	if !multiplayer.is_server():
-		return
+	
 	if hp > 0:
 		hp-= 1
 	if hp <= 0:

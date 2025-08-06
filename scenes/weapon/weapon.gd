@@ -10,8 +10,7 @@ func Fire():
 		if cast.is_colliding():
 			var col := cast.get_collider()
 			if col.has_method("take_damage"):
-				#col.take_damage.rpc()
-				col.take_damage.rpc()
+				col.take_damage.rpc_id(1)
 	await get_tree().create_timer(0.1).timeout
 	fire.hide()
 	

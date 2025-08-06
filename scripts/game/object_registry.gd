@@ -25,7 +25,7 @@ func _ready():
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 
 # Instancia localmente e registra
-@rpc("call_local", "any_peer")
+@rpc("call_local", "any_peer", "reliable")
 func request_spawn(tipo_objeto: int, position: Vector2, rotation_degrees: float, estado: String = ""):
 	if not OBJECT_SCENES.has(tipo_objeto):
 		push_error("Tipo de objeto inválido: %s" % tipo_objeto)
