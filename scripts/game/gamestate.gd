@@ -37,7 +37,7 @@ func _on_error(message: String):
 func _on_players_updated():
 	print("Player list updated.")
 
-@rpc("call_local", "any_peer")
+@rpc("call_local", "any_peer", "reliable")
 func register_player(name: String):
 	var id = multiplayer.get_remote_sender_id()
 	PlayerRegistry.register_player(id, name)

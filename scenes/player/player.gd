@@ -2,33 +2,54 @@ class_name Player
 extends CharacterBody2D
 
 const MOTION_SPEED = 180.0
+@export var is_local_player := false
+@export var color : Color
+# Nós
+@export var inputs : Node
+@export var states : Node
+@export var camera : Camera2D 
+@export var collision_shape : CollisionShape2D
+@export var canvas : CanvasLayer
+@export var interface : Control
+@export var loadingScene : Node
+@export var weapon : Weapon
 
-@export var synced_position : Vector2
+func _enter_tree():
+	is_local_player = is_multiplayer_authority()
+	if is_local_player:
+		canvas.visible = true
+		camera.enabled = true
 
-@onready var inputs = $Inputs
-@onready var camera = $Camera2D
+func _ready() -> void:
+	states.force_change_state("freeze")
+	if is_local_player:
+		_setup_player()
 
-func _ready():
-	print("Player spawned: ", name)
-
-	if str(name).is_valid_int():
-		get_node("Inputs/InputsSync").set_multiplayer_authority(str(name).to_int())
-
-	if str(multiplayer.get_unique_id()) == str(name):
-		$Camera2D.enabled = true
-	## Habilita a câmera apenas se este player é o dono (auts
-	#if is_multiplayer_authority():
-		#camera.enabled = true
-		#print(name + " yes")
-	#else:
-		#camera.enabled = false
-		#print(name + " no")
-
+func _setup_player():
+	await get_tree().create_timer(1.1 ).timeout
+	global_position = get_parent().global_position
+	states.force_change_state("idle")
+	pass
 
 func _physics_process(delta):
-	if str(multiplayer.get_unique_id()) == str(name):
+	if is_local_player:
 		inputs.update()
-	#if is_multiplayer_authority():
-	velocity = inputs.motion * MOTION_SPEED
-	move_and_slide()
-	look_at(inputs.mouse_pos)
+
+@rpc("any_peer", "call_local")
+func take_damage():
+	var passo : float = 0.1
+	var cor_atual = modulate
+
+	# Diminui os valores R, G e B, mas garante que não fiquem abaixo de 0
+	cor_atual.r = max(cor_atual.r - passo, 0)
+	cor_atual.g = max(cor_atual.g - passo, 0)
+	cor_atual.b = max(cor_atual.b - passo, 0)
+
+	# Aplica a nova cor
+	modulate = cor_atual
+	
+#func _physics_process(delta):
+	#if Input.is_action_just_pressed("space") && is_local_player:
+		#global_position = get_parent().global_position
+	#if is_local_player:
+		#inputs.update()

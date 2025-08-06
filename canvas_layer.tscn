@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dgb4kpqx8gvao"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 420.0
+offset_bottom = 1080.0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 1500.0
+offset_right = 1920.0
+offset_bottom = 1080.0

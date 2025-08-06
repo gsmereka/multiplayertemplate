@@ -1,8 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://wsqekb8cav1t"]
+[gd_scene load_steps=15 format=3 uid="uid://wsqekb8cav1t"]
 
 [ext_resource type="Texture2D" uid="uid://c48ucov8jdbr0" path="res://assets/player/player.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://b24nt2q2yh8wf" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="Texture2D" uid="uid://dtbeoupwqbpyn" path="res://assets/loading_screen.png" id="2_0owmy"]
+[ext_resource type="Script" uid="uid://bv6oj48uda32v" path="res://scenes/weapon/weapon.gd" id="3_5gtgg"]
 [ext_resource type="Script" uid="uid://d23s71hk84b6x" path="res://scenes/player/inputs.gd" id="3_gmlin"]
+[ext_resource type="Script" uid="uid://d1pqf47bbrtbe" path="res://scenes/player/states/FiniteStateMachine.gd" id="3_lvxji"]
+[ext_resource type="Texture2D" uid="uid://78dlafcg4suy" path="res://assets/player/player - para o outro lado.png" id="3_qek5x"]
+[ext_resource type="Script" uid="uid://c0x4xfbeiv7ud" path="res://scenes/player/states/state_idle.gd" id="4_p47bc"]
+[ext_resource type="Script" uid="uid://c3vd0cp82i2d7" path="res://scenes/player/states/freeze.gd" id="5_75vfm"]
+[ext_resource type="Texture2D" uid="uid://5jbkwel4cdwy" path="res://assets/cw.png" id="5_h17s1"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_h17s1"]
+properties/0/path = NodePath("Fire:visible")
+properties/0/spawn = true
+properties/0/replication_mode = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8afob"]
 radius = 27.2947
@@ -11,28 +23,130 @@ radius = 27.2947
 properties/0/path = NodePath(".:rotation")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath(".:synced_position")
+properties/1/path = NodePath(".:position")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath(".:position")
+properties/2/path = NodePath(".:modulate")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath(".:visible")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("CollisionShape2D:disabled")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lvxji"]
-properties/0/path = NodePath(".:motion")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:mouse_pos")
-properties/1/spawn = true
-properties/1/replication_mode = 1
+[sub_resource type="GDScript" id="GDScript_h17s1"]
+script/source = "extends State
 
-[node name="Player" type="CharacterBody2D"]
+@export var player: CharacterBody2D
+@export var inputs: Node
+@onready var MOTION_SPEED = player.MOTION_SPEED
+
+func Enter():
+	player.visible = true;
+	player.modulate = Color(1,1,1)
+	pass
+
+
+var selected_object_type := ObjectRegistry.ObjectType.TREE  # Default
+
+func Update(_delta:float):
+	if Input.is_action_just_pressed(\"space\"):
+		Craft()
+		
+	if player.weapon:
+		if Input.is_action_just_pressed(\"left_click\"):
+			player.weapon.Fire()
+	#if inputs:
+	player.velocity = inputs.motion * MOTION_SPEED
+	player.look_at(inputs.mouse_pos)
+	player.move_and_slide()
+	
+	if Input.is_action_just_pressed(\"ui_select\"):
+		selected_object_type = ObjectRegistry.ObjectType.DEFAULT
+	elif Input.is_action_just_pressed(\"ui_left\"):
+		selected_object_type = ObjectRegistry.ObjectType.TREE
+	elif Input.is_action_just_pressed(\"ui_right\"):
+		selected_object_type = ObjectRegistry.ObjectType.CRATE
+	pass
+
+func Process_update(_delta:float):
+	pass
+	
+func Exit():
+	pass
+
+func Craft():
+	var offset := Vector2(50,0)
+	var spawn_pos := player.global_position + offset
+	var rot := player.rotation
+	var estado := \"ativo\"
+	ObjectRegistry.request_spawn.rpc_id(1,selected_object_type, spawn_pos, rot, estado)
+	pass
+"
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputs", "states", "camera", "collision_shape", "canvas", "interface", "loadingScene", "weapon")]
+motion_mode = 1
 script = ExtResource("1_dovo2")
+inputs = NodePath("Inputs")
+states = NodePath("States")
+camera = NodePath("Camera2D")
+collision_shape = NodePath("CollisionShape2D")
+canvas = NodePath("CanvasLayer")
+interface = NodePath("CanvasLayer/Control")
+loadingScene = NodePath("CanvasLayer/Control/Loading")
+weapon = NodePath("Weapon")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Loading" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_0owmy")
+
+[node name="Weapon" type="Node2D" parent="."]
+script = ExtResource("3_5gtgg")
+
+[node name="RayCast2D" type="RayCast2D" parent="Weapon"]
+target_position = Vector2(1200, 0)
+
+[node name="Fire" type="Sprite2D" parent="Weapon"]
+visible = false
+modulate = Color(0.99498, 0.963131, 0.281134, 1)
+position = Vector2(630, 1)
+scale = Vector2(1.161, 0.002)
+texture = ExtResource("5_h17s1")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Weapon"]
+replication_config = SubResource("SceneReplicationConfig_h17s1")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(59, 0)
 rotation = 1.5708
 texture = ExtResource("1_8afob")
+
+[node name="Player-ParaOOutroLado" type="Sprite2D" parent="Sprite"]
+modulate = Color(80, 80, 80, 0.536)
+show_behind_parent = true
+position = Vector2(5.00014, 38)
+scale = Vector2(3.1, 2)
+texture = ExtResource("3_qek5x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8afob")
@@ -43,8 +157,31 @@ replication_config = SubResource("SceneReplicationConfig_gmlin")
 [node name="Inputs" type="Node" parent="."]
 script = ExtResource("3_gmlin")
 
-[node name="InputsSync" type="MultiplayerSynchronizer" parent="Inputs"]
-replication_config = SubResource("SceneReplicationConfig_lvxji")
+[node name="States" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_lvxji")
+initial_state = NodePath("idle")
+
+[node name="idle_backup" type="Node" parent="States" node_paths=PackedStringArray("player", "inputs")]
+script = ExtResource("4_p47bc")
+player = NodePath("../..")
+inputs = NodePath("../../Inputs")
+metadata/_custom_type_script = "uid://s1feqfw0yldx"
+
+[node name="craft" type="Node" parent="States" node_paths=PackedStringArray("player", "inputs")]
+script = SubResource("GDScript_h17s1")
+player = NodePath("../..")
+inputs = NodePath("../../Inputs")
+metadata/_custom_type_script = "uid://s1feqfw0yldx"
+
+[node name="idle" type="Node" parent="States" node_paths=PackedStringArray("player", "inputs")]
+script = ExtResource("4_p47bc")
+player = NodePath("../..")
+inputs = NodePath("../../Inputs")
+metadata/_custom_type_script = "uid://s1feqfw0yldx"
+
+[node name="freeze" type="Node" parent="States" node_paths=PackedStringArray("player")]
+script = ExtResource("5_75vfm")
+player = NodePath("../..")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
