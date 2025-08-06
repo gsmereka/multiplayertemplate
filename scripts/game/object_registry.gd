@@ -1,7 +1,8 @@
 extends Node
 signal objects_updated()
 
-var node_spawner : Node
+var node_spawner_ground : Node
+var node_spawner_top : Node
 # Enum para tipos de objeto
 enum ObjectType {
 	DEFAULT,
@@ -53,11 +54,17 @@ func spawn_object(data: Dictionary):
 	
 	if instance.has_method("set_estado"):
 		instance.set_estado(data["estado"])
-
-	if !node_spawner:
+	
+	
+	if !node_spawner_top || !node_spawner_ground:
 		get_tree().current_scene.add_child(instance)
 	else:
-		node_spawner.add_child(instance, true)
+		if instance.type_level == "top":
+			node_spawner_top.add_child(instance, true)
+		elif instance.type_level == "ground":
+			node_spawner_ground.add_child(instance, true)
+		else:
+			print("not type level found")
 
 func _on_peer_disconnected(id: int):
 	# Você pode limpar objetos associados ao peer aqui, se quiser

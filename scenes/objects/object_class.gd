@@ -2,6 +2,7 @@ extends StaticBody2D
 
 class_name ObjectClass
 
+var type_level : String = "top"
 @export var hp = 3
 
 @rpc("any_peer", "reliable", "call_local")

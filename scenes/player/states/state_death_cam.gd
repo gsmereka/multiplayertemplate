@@ -42,16 +42,17 @@ func Update(_delta: float):
 			death_cam.enabled = true
 
 func Exit():
-	player.camera.enabled = true
-	if death_cam:
-		death_cam.enabled = false
-		death_cam = null
+	pass
 
 func Revive():
 	player.global_position = player.get_parent().global_position
 	player.visible = true
 	player.collision_shape.disabled = false
 	player.states.change_state(self, "idle")
+	if death_cam:
+		death_cam.enabled = false
+		death_cam = null
+	player.camera.enabled = true
 
 # Atualiza a lista de players vivos (visíveis)
 func _update_alive_players():
