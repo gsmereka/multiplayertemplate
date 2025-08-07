@@ -10,6 +10,7 @@ var alive_players: Array = []
 
 func Enter():
 	player.visible = false
+	DropBody()
 	player.collision_shape.disabled = true
 	player.modulate = Color(1, 1, 1)
 	player.camera.enabled = false
@@ -73,3 +74,12 @@ func _select_random_death_cam():
 			death_cam.enabled = true
 	else:
 		death_cam = null
+
+func DropBody():
+	var spawn_pos := player.global_position
+	var rot := player.rotation
+	#var estado := Ja esta aleatorio. mas posso escolher o metodo depois por aqui
+	ObjectRegistry.request_spawn.rpc_id(1, ObjectRegistry.ObjectType.BODY, spawn_pos, rot, str(randi() % 8))
+
+	#ObjectRegistry.request_spawn.rpc_id(1, ObjectRegistry.ObjectType.BODY, spawn_pos, rot, "1")
+	pass

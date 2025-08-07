@@ -51,7 +51,7 @@ spawn_path = NodePath("../../PlayerSpawn")
 script = ExtResource("4_kelw5")
 
 [node name="MultiplayerSpawnerGround" type="MultiplayerSpawner" parent="ObjectsManager"]
-_spawnable_scenes = PackedStringArray("uid://bokfkixk25s8k")
+_spawnable_scenes = PackedStringArray("uid://bokfkixk25s8k", "uid://c0l258go5trpl")
 spawn_path = NodePath("../../Ground/ObjectsGroundSpawn")
 
 [node name="MultiplayerSpawnerTop" type="MultiplayerSpawner" parent="ObjectsManager"]

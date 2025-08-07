@@ -12,3 +12,6 @@ func take_damage():
 		hp-= 1
 	if hp <= 0:
 		queue_free()
+
+func get_level():
+	return type_level
