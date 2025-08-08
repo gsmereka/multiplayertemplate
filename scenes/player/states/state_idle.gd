@@ -3,6 +3,8 @@ extends State
 @export var player: CharacterBody2D
 @export var inputs: Node
 @onready var MOTION_SPEED = player.MOTION_SPEED
+@export var vision: RayCast2D
+@export var portrait: Control
 
 func Enter():
 	player.visible = true;
@@ -39,6 +41,16 @@ func update_camera_position():
 	var target_camera_pos = player_pos + target_offset
 
 	player.camera.global_position = player.camera.global_position.lerp(target_camera_pos, 0.1)  # suavemente segue
+	_update_vision_frame()
+
+func _update_vision_frame():
+	if vision.is_colliding():
+		var col = vision.get_collider()
+		if col is Player:
+			portrait.show()
+	else:
+		portrait.hide()
+	pass
 
 func Process_update(_delta:float):
 	pass
