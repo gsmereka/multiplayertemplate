@@ -1,0 +1,127 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba5j15y16x08g"]
+
+[ext_resource type="Script" uid="uid://tuqwljplm360" path="res://scenes/PortraitFrame/portrait_frame.gd" id="1_jbvkp"]
+[ext_resource type="Texture2D" uid="uid://pcfn0crgsckt" path="res://icon.svg" id="2_jbvkp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jbvkp"]
+font_size = 26
+
+[node name="PortraitFrame" type="Control" node_paths=PackedStringArray("frame", "frame_name")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 136.0
+offset_top = 903.0
+offset_right = 176.0
+offset_bottom = 943.0
+script = ExtResource("1_jbvkp")
+frame = NodePath("TextureRect")
+frame_name = NodePath("Label")
+
+[node name="Control2" type="Control" parent="."]
+anchors_preset = 0
+offset_top = -48.0
+offset_right = 40.0
+offset_bottom = -8.0
+scale = Vector2(1.5, 1.5)
+
+[node name="Border" type="ColorRect" parent="Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.741176, 0.309804, 1)
+
+[node name="Background" type="ColorRect" parent="Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -95.0
+offset_right = 95.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.5, 1.5)
+
+[node name="Border" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.741176, 0.309804, 1)
+
+[node name="Background" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -95.0
+offset_right = 95.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 0.5
+anchor_right = 0.125
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -171.0
+offset_right = 69.0
+offset_bottom = -148.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(48, 12)
+text = "UKNOWN"
+label_settings = SubResource("LabelSettings_jbvkp")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = -115.0
+offset_right = 133.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_jbvkp")
+expand_mode = 1
+stretch_mode = 5
