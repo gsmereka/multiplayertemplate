@@ -204,6 +204,7 @@ size_flags_vertical = 4
 texture = ExtResource("2_0owmy")
 
 [node name="VisionFrame" type="Control" parent="CanvasLayer/Control"]
+visible = false
 anchors_preset = 0
 offset_left = 136.0
 offset_top = 903.0
