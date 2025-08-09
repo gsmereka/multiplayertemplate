@@ -111,6 +111,7 @@ f5={
 [layer_names]
 
 2d_render/layer_4="visibles"
+2d_render/layer_19="ilumination"
 2d_render/layer_20="objects"
 2d_physics/layer_32="hit"
 

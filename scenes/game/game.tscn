@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhdlv4p7cy2wx"]
+[gd_scene load_steps=9 format=3 uid="uid://bhdlv4p7cy2wx"]
 
 [ext_resource type="Texture2D" uid="uid://d08vr5dwfnkar" path="res://assets/map/forest_ground.png" id="1_7h61r"]
 [ext_resource type="Texture2D" uid="uid://cg5w1b78pksex" path="res://assets/map/forest_shadow.png" id="2_0sr1o"]
-[ext_resource type="PackedScene" uid="uid://dmx480t4ouqqh" path="res://scenes/multiplayer_manager.tscn" id="3_kelw5"]
+[ext_resource type="Texture2D" uid="uid://jgnygd7kf2xa" path="res://assets/light.png" id="2_5i0tg"]
+[ext_resource type="PackedScene" uid="uid://dmx480t4ouqqh" path="res://scenes/stage/multiplayer_manager.tscn" id="3_kelw5"]
 [ext_resource type="PackedScene" uid="uid://b5ws40aaoryof" path="res://scenes/objects/brick/brick.tscn" id="3_lfrn8"]
-[ext_resource type="Script" uid="uid://dxf4byyibjatk" path="res://scenes/objects_manager.gd" id="4_kelw5"]
+[ext_resource type="Script" uid="uid://dxf4byyibjatk" path="res://scenes/stage/objects_manager.gd" id="4_kelw5"]
+[ext_resource type="Script" uid="uid://d1qmlxssqyb76" path="res://scenes/stage/env.gd" id="7_bdhmt"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bdhmt"]
+properties/0/path = NodePath("Global Ilumination/ColorRect:color")
+properties/0/spawn = true
+properties/0/replication_mode = 2
 
 [node name="Game" type="Node2D"]
 
@@ -12,6 +19,24 @@
 
 [node name="ForestGround" type="Sprite2D" parent="Ground"]
 texture = ExtResource("1_7h61r")
+
+[node name="ShippIlumination" type="PointLight2D" parent="Ground"]
+position = Vector2(-1936, 1992)
+color = Color(0, 1, 0.166667, 1)
+range_item_cull_mask = 786433
+shadow_enabled = true
+shadow_item_cull_mask = 786433
+texture = ExtResource("2_5i0tg")
+texture_scale = 2.0
+
+[node name="ShippIlumination2" type="PointLight2D" parent="Ground"]
+position = Vector2(-1360, 1908)
+color = Color(1, 0.506667, 0.2, 1)
+range_item_cull_mask = 786433
+shadow_enabled = true
+shadow_item_cull_mask = 786433
+texture = ExtResource("2_5i0tg")
+texture_scale = 2.0
 
 [node name="ObjectsGroundSpawn" type="Node2D" parent="Ground"]
 
@@ -1184,3 +1209,16 @@ spawn_path = NodePath("../../Ground/ObjectsGroundSpawn")
 [node name="MultiplayerSpawnerTop" type="MultiplayerSpawner" parent="ObjectsManager"]
 _spawnable_scenes = PackedStringArray("uid://bokfkixk25s8k")
 spawn_path = NodePath("../../Top/ObjectsTopSpawn")
+
+[node name="Env" type="Node2D" parent="."]
+script = ExtResource("7_bdhmt")
+dawn_dusk_color = Color(1, 0.501961, 0.2, 0.384314)
+day_color = Color(1, 1, 1, 0)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Env"]
+light_mask = 786441
+visibility_layer = 786441
+color = Color(1, 0.784167, 0.65, 1)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Env"]
+replication_config = SubResource("SceneReplicationConfig_bdhmt")

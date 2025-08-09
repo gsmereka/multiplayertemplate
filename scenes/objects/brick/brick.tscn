@@ -9,6 +9,8 @@ size = Vector2(16, 16)
 polygon = PackedVector2Array(30, 0, 30, -20, 10, -20, 10, 0)
 
 [node name="brick" type="StaticBody2D"]
+light_mask = 786440
+visibility_layer = 786440
 scale = Vector2(1.4, 1.4)
 
 [node name="Bloco" type="Sprite2D" parent="."]
@@ -24,4 +26,4 @@ shape = SubResource("RectangleShape2D_i0hgb")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 position = Vector2(-20, 10)
 occluder = SubResource("OccluderPolygon2D_62ank")
-occluder_light_mask = 524288
+occluder_light_mask = 524296
