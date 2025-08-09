@@ -15,6 +15,7 @@ properties/1/spawn = true
 properties/1/replication_mode = 2
 
 [node name="Object" type="StaticBody2D"]
+collision_layer = 2147483649
 script = ExtResource("1_3fnx3")
 
 [node name="Sprite" type="Sprite2D" parent="."]

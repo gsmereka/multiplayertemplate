@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5ws40aaoryof"]
+
+[ext_resource type="Texture2D" uid="uid://brdrqxl0kra70" path="res://assets/objects/bloco.png" id="1_62ank"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0hgb"]
+size = Vector2(16, 16)
+
+[node name="brick" type="StaticBody2D"]
+scale = Vector2(1.4, 1.4)
+
+[node name="Bloco" type="Sprite2D" parent="."]
+modulate = Color(0.74, 0.333, 0.333, 1)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("1_62ank")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+scale = Vector2(1.4, 1.4)
+shape = SubResource("RectangleShape2D_i0hgb")

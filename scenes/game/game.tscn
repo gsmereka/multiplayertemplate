@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhdlv4p7cy2wx"]
+[gd_scene load_steps=6 format=3 uid="uid://bhdlv4p7cy2wx"]
 
 [ext_resource type="Texture2D" uid="uid://d08vr5dwfnkar" path="res://assets/map/forest_ground.png" id="1_7h61r"]
 [ext_resource type="Texture2D" uid="uid://cg5w1b78pksex" path="res://assets/map/forest_shadow.png" id="2_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://dmx480t4ouqqh" path="res://scenes/multiplayer_manager.tscn" id="3_kelw5"]
+[ext_resource type="PackedScene" uid="uid://b5ws40aaoryof" path="res://scenes/objects/brick/brick.tscn" id="3_lfrn8"]
 [ext_resource type="Script" uid="uid://dxf4byyibjatk" path="res://scenes/objects_manager.gd" id="4_kelw5"]
 
 [node name="Game" type="Node2D"]
@@ -35,6 +36,1132 @@ position = Vector2(607, -513)
 [node name="Top" type="Node2D" parent="."]
 
 [node name="ObjectsTopSpawn" type="Node2D" parent="Top"]
+
+[node name="HorizontalBricks" type="Node2D" parent="Top"]
+
+[node name="Wall5" type="Node2D" parent="Top/HorizontalBricks"]
+position = Vector2(416, 808)
+
+[node name="brick" parent="Top/HorizontalBricks/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1392, 848)
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/HorizontalBricks/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1424, 848)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/HorizontalBricks/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1456, 848)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/HorizontalBricks/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1488, 848)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/HorizontalBricks/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1520, 848)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/HorizontalBricks/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1552, 848)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/HorizontalBricks/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1584, 848)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/HorizontalBricks/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1360, 848)
+scale = Vector2(2, 2)
+
+[node name="Wall6" type="Node2D" parent="Top/HorizontalBricks"]
+position = Vector2(736, 288)
+
+[node name="brick" parent="Top/HorizontalBricks/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1392, 848)
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/HorizontalBricks/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1424, 848)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/HorizontalBricks/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1456, 848)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/HorizontalBricks/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1488, 848)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/HorizontalBricks/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1520, 848)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/HorizontalBricks/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1552, 848)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/HorizontalBricks/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1584, 848)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/HorizontalBricks/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1360, 848)
+scale = Vector2(2, 2)
+
+[node name="Wall7" type="Node2D" parent="Top/HorizontalBricks"]
+position = Vector2(1152, 288)
+
+[node name="brick" parent="Top/HorizontalBricks/Wall7" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1392, 848)
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/HorizontalBricks/Wall7" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1424, 848)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/HorizontalBricks/Wall7" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1456, 848)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/HorizontalBricks/Wall7" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1488, 848)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/HorizontalBricks/Wall7" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1520, 848)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/HorizontalBricks/Wall7" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1552, 848)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/HorizontalBricks/Wall7" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1584, 848)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/HorizontalBricks/Wall7" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1360, 848)
+scale = Vector2(2, 2)
+
+[node name="TopBricks" type="Node2D" parent="Top/HorizontalBricks"]
+
+[node name="Wall1" type="Node2D" parent="Top/HorizontalBricks/TopBricks"]
+position = Vector2(152, -248)
+
+[node name="brick" parent="Top/HorizontalBricks/TopBricks/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1392, 848)
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/HorizontalBricks/TopBricks/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1424, 848)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/HorizontalBricks/TopBricks/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1456, 848)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/HorizontalBricks/TopBricks/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1488, 848)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/HorizontalBricks/TopBricks/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1520, 848)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/HorizontalBricks/TopBricks/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1552, 848)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/HorizontalBricks/TopBricks/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1584, 848)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/HorizontalBricks/TopBricks/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1360, 848)
+scale = Vector2(2, 2)
+
+[node name="Wall4" type="Node2D" parent="Top/HorizontalBricks/TopBricks"]
+position = Vector2(-616, -248)
+
+[node name="brick" parent="Top/HorizontalBricks/TopBricks/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1392, 848)
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/HorizontalBricks/TopBricks/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1424, 848)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/HorizontalBricks/TopBricks/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1456, 848)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/HorizontalBricks/TopBricks/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1488, 848)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/HorizontalBricks/TopBricks/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1520, 848)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/HorizontalBricks/TopBricks/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1552, 848)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/HorizontalBricks/TopBricks/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1584, 848)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/HorizontalBricks/TopBricks/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1360, 848)
+scale = Vector2(2, 2)
+
+[node name="Wall2" type="Node2D" parent="Top/HorizontalBricks/TopBricks"]
+position = Vector2(-104, -248)
+
+[node name="brick" parent="Top/HorizontalBricks/TopBricks/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1392, 848)
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/HorizontalBricks/TopBricks/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1424, 848)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/HorizontalBricks/TopBricks/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1456, 848)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/HorizontalBricks/TopBricks/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1488, 848)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/HorizontalBricks/TopBricks/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1520, 848)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/HorizontalBricks/TopBricks/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1552, 848)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/HorizontalBricks/TopBricks/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1584, 848)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/HorizontalBricks/TopBricks/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1360, 848)
+scale = Vector2(2, 2)
+
+[node name="Wall3" type="Node2D" parent="Top/HorizontalBricks/TopBricks"]
+position = Vector2(-360, -248)
+
+[node name="brick" parent="Top/HorizontalBricks/TopBricks/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1392, 848)
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/HorizontalBricks/TopBricks/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1424, 848)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/HorizontalBricks/TopBricks/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1456, 848)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/HorizontalBricks/TopBricks/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1488, 848)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/HorizontalBricks/TopBricks/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1520, 848)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/HorizontalBricks/TopBricks/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1552, 848)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/HorizontalBricks/TopBricks/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1584, 848)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/HorizontalBricks/TopBricks/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1360, 848)
+scale = Vector2(2, 2)
+
+[node name="TopBricks2" type="Node2D" parent="Top/HorizontalBricks"]
+position = Vector2(1285, 1049)
+rotation = 0.533007
+
+[node name="Wall1" type="Node2D" parent="Top/HorizontalBricks/TopBricks2"]
+position = Vector2(152, -248)
+
+[node name="brick" parent="Top/HorizontalBricks/TopBricks2/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1392, 848)
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/HorizontalBricks/TopBricks2/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1424, 848)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/HorizontalBricks/TopBricks2/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1456, 848)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/HorizontalBricks/TopBricks2/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1488, 848)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/HorizontalBricks/TopBricks2/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1520, 848)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/HorizontalBricks/TopBricks2/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1552, 848)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/HorizontalBricks/TopBricks2/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1584, 848)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/HorizontalBricks/TopBricks2/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1360, 848)
+scale = Vector2(2, 2)
+
+[node name="Wall4" type="Node2D" parent="Top/HorizontalBricks/TopBricks2"]
+position = Vector2(-616, -248)
+
+[node name="brick" parent="Top/HorizontalBricks/TopBricks2/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1392, 848)
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/HorizontalBricks/TopBricks2/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1424, 848)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/HorizontalBricks/TopBricks2/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1456, 848)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/HorizontalBricks/TopBricks2/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1488, 848)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/HorizontalBricks/TopBricks2/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1520, 848)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/HorizontalBricks/TopBricks2/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1552, 848)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/HorizontalBricks/TopBricks2/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1584, 848)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/HorizontalBricks/TopBricks2/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1360, 848)
+scale = Vector2(2, 2)
+
+[node name="Wall2" type="Node2D" parent="Top/HorizontalBricks/TopBricks2"]
+position = Vector2(-104, -248)
+
+[node name="brick" parent="Top/HorizontalBricks/TopBricks2/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1392, 848)
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/HorizontalBricks/TopBricks2/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1424, 848)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/HorizontalBricks/TopBricks2/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1456, 848)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/HorizontalBricks/TopBricks2/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1488, 848)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/HorizontalBricks/TopBricks2/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1520, 848)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/HorizontalBricks/TopBricks2/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1552, 848)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/HorizontalBricks/TopBricks2/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1584, 848)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/HorizontalBricks/TopBricks2/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1360, 848)
+scale = Vector2(2, 2)
+
+[node name="Wall3" type="Node2D" parent="Top/HorizontalBricks/TopBricks2"]
+position = Vector2(-360, -248)
+
+[node name="brick" parent="Top/HorizontalBricks/TopBricks2/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1392, 848)
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/HorizontalBricks/TopBricks2/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1424, 848)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/HorizontalBricks/TopBricks2/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1456, 848)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/HorizontalBricks/TopBricks2/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1488, 848)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/HorizontalBricks/TopBricks2/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1520, 848)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/HorizontalBricks/TopBricks2/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1552, 848)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/HorizontalBricks/TopBricks2/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1584, 848)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/HorizontalBricks/TopBricks2/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1360, 848)
+scale = Vector2(2, 2)
+
+[node name="TopBricks3" type="Node2D" parent="Top/HorizontalBricks"]
+position = Vector2(2512, 464)
+rotation = 0.00068444
+
+[node name="Wall1" type="Node2D" parent="Top/HorizontalBricks/TopBricks3"]
+position = Vector2(152, -248)
+
+[node name="brick" parent="Top/HorizontalBricks/TopBricks3/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1392, 848)
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/HorizontalBricks/TopBricks3/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1424, 848)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/HorizontalBricks/TopBricks3/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1456, 848)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/HorizontalBricks/TopBricks3/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1488, 848)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/HorizontalBricks/TopBricks3/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1520, 848)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/HorizontalBricks/TopBricks3/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1552, 848)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/HorizontalBricks/TopBricks3/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1584, 848)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/HorizontalBricks/TopBricks3/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1360, 848)
+scale = Vector2(2, 2)
+
+[node name="Wall4" type="Node2D" parent="Top/HorizontalBricks/TopBricks3"]
+position = Vector2(-616, -248)
+
+[node name="brick" parent="Top/HorizontalBricks/TopBricks3/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1392, 848)
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/HorizontalBricks/TopBricks3/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1424, 848)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/HorizontalBricks/TopBricks3/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1456, 848)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/HorizontalBricks/TopBricks3/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1488, 848)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/HorizontalBricks/TopBricks3/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1520, 848)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/HorizontalBricks/TopBricks3/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1552, 848)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/HorizontalBricks/TopBricks3/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1584, 848)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/HorizontalBricks/TopBricks3/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1360, 848)
+scale = Vector2(2, 2)
+
+[node name="Wall2" type="Node2D" parent="Top/HorizontalBricks/TopBricks3"]
+position = Vector2(-104, -248)
+
+[node name="brick" parent="Top/HorizontalBricks/TopBricks3/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1392, 848)
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/HorizontalBricks/TopBricks3/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1424, 848)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/HorizontalBricks/TopBricks3/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1456, 848)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/HorizontalBricks/TopBricks3/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1488, 848)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/HorizontalBricks/TopBricks3/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1520, 848)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/HorizontalBricks/TopBricks3/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1552, 848)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/HorizontalBricks/TopBricks3/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1584, 848)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/HorizontalBricks/TopBricks3/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1360, 848)
+scale = Vector2(2, 2)
+
+[node name="Wall3" type="Node2D" parent="Top/HorizontalBricks/TopBricks3"]
+position = Vector2(-360, -248)
+
+[node name="brick" parent="Top/HorizontalBricks/TopBricks3/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1392, 848)
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/HorizontalBricks/TopBricks3/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1424, 848)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/HorizontalBricks/TopBricks3/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1456, 848)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/HorizontalBricks/TopBricks3/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1488, 848)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/HorizontalBricks/TopBricks3/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1520, 848)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/HorizontalBricks/TopBricks3/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1552, 848)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/HorizontalBricks/TopBricks3/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1584, 848)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/HorizontalBricks/TopBricks3/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(-1360, 848)
+scale = Vector2(2, 2)
+
+[node name="VerticalBricks" type="Node2D" parent="Top"]
+
+[node name="Wall1" type="Node2D" parent="Top/VerticalBricks"]
+position = Vector2(-1728, 696)
+
+[node name="brick" parent="Top/VerticalBricks/Wall1" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/Wall1" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+
+[node name="Wall2" type="Node2D" parent="Top/VerticalBricks"]
+position = Vector2(-1728, 952)
+
+[node name="brick" parent="Top/VerticalBricks/Wall2" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/Wall2" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+
+[node name="Wall3" type="Node2D" parent="Top/VerticalBricks"]
+position = Vector2(-1728, 1480)
+
+[node name="brick" parent="Top/VerticalBricks/Wall3" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/Wall3" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+
+[node name="Wall4" type="Node2D" parent="Top/VerticalBricks"]
+position = Vector2(-560, 2000)
+
+[node name="brick" parent="Top/VerticalBricks/Wall4" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+
+[node name="RightWall" type="Node2D" parent="Top/VerticalBricks"]
+
+[node name="Wall8" type="Node2D" parent="Top/VerticalBricks/RightWall"]
+position = Vector2(1304, 1152)
+
+[node name="brick" parent="Top/VerticalBricks/RightWall/Wall8" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/RightWall/Wall8" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/RightWall/Wall8" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/RightWall/Wall8" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/RightWall/Wall8" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/RightWall/Wall8" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/RightWall/Wall8" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/RightWall/Wall8" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+
+[node name="Wall9" type="Node2D" parent="Top/VerticalBricks/RightWall"]
+position = Vector2(1304, 1408)
+
+[node name="brick" parent="Top/VerticalBricks/RightWall/Wall9" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/RightWall/Wall9" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/RightWall/Wall9" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/RightWall/Wall9" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/RightWall/Wall9" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/RightWall/Wall9" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/RightWall/Wall9" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/RightWall/Wall9" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+
+[node name="Wall10" type="Node2D" parent="Top/VerticalBricks/RightWall"]
+position = Vector2(1304, 1600)
+
+[node name="brick" parent="Top/VerticalBricks/RightWall/Wall10" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/RightWall/Wall10" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/RightWall/Wall10" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/RightWall/Wall10" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/RightWall/Wall10" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/RightWall/Wall10" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/RightWall/Wall10" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/RightWall/Wall10" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+
+[node name="Wall11" type="Node2D" parent="Top/VerticalBricks/RightWall"]
+position = Vector2(1304, 1856)
+
+[node name="brick" parent="Top/VerticalBricks/RightWall/Wall11" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/RightWall/Wall11" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/RightWall/Wall11" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/RightWall/Wall11" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/RightWall/Wall11" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/RightWall/Wall11" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/RightWall/Wall11" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/RightWall/Wall11" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+
+[node name="Wall12" type="Node2D" parent="Top/VerticalBricks/RightWall"]
+position = Vector2(1304, 2112)
+
+[node name="brick" parent="Top/VerticalBricks/RightWall/Wall12" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/RightWall/Wall12" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/RightWall/Wall12" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/RightWall/Wall12" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/RightWall/Wall12" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/RightWall/Wall12" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/RightWall/Wall12" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/RightWall/Wall12" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+
+[node name="RightMiddleWall" type="Node2D" parent="Top/VerticalBricks"]
+
+[node name="Wall7" type="Node2D" parent="Top/VerticalBricks/RightMiddleWall"]
+position = Vector2(16, 1424)
+
+[node name="brick" parent="Top/VerticalBricks/RightMiddleWall/Wall7" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/RightMiddleWall/Wall7" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/RightMiddleWall/Wall7" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/RightMiddleWall/Wall7" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/RightMiddleWall/Wall7" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/RightMiddleWall/Wall7" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/RightMiddleWall/Wall7" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/RightMiddleWall/Wall7" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+
+[node name="Wall8" type="Node2D" parent="Top/VerticalBricks/RightMiddleWall"]
+position = Vector2(16, 1680)
+
+[node name="brick" parent="Top/VerticalBricks/RightMiddleWall/Wall8" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/RightMiddleWall/Wall8" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/RightMiddleWall/Wall8" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/RightMiddleWall/Wall8" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/RightMiddleWall/Wall8" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/RightMiddleWall/Wall8" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/RightMiddleWall/Wall8" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/RightMiddleWall/Wall8" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+
+[node name="MiddleWall" type="Node2D" parent="Top/VerticalBricks"]
+
+[node name="Wall4" type="Node2D" parent="Top/VerticalBricks/MiddleWall"]
+position = Vector2(-1416, 1768)
+
+[node name="brick" parent="Top/VerticalBricks/MiddleWall/Wall4" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/MiddleWall/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/MiddleWall/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/MiddleWall/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/MiddleWall/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/MiddleWall/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/MiddleWall/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/MiddleWall/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+
+[node name="Wall5" type="Node2D" parent="Top/VerticalBricks/MiddleWall"]
+position = Vector2(-1416, 1232)
+
+[node name="brick" parent="Top/VerticalBricks/MiddleWall/Wall5" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/MiddleWall/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/MiddleWall/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/MiddleWall/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/MiddleWall/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/MiddleWall/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/MiddleWall/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/MiddleWall/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+
+[node name="Wall6" type="Node2D" parent="Top/VerticalBricks/MiddleWall"]
+position = Vector2(-1416, 1488)
+
+[node name="brick" parent="Top/VerticalBricks/MiddleWall/Wall6" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/MiddleWall/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/MiddleWall/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/MiddleWall/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/MiddleWall/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/MiddleWall/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/MiddleWall/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/MiddleWall/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+
+[node name="MiddleWall2" type="Node2D" parent="Top/VerticalBricks"]
+position = Vector2(376, -304)
+
+[node name="Wall4" type="Node2D" parent="Top/VerticalBricks/MiddleWall2"]
+position = Vector2(-1416, 1768)
+
+[node name="brick" parent="Top/VerticalBricks/MiddleWall2/Wall4" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/MiddleWall2/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/MiddleWall2/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/MiddleWall2/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/MiddleWall2/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/MiddleWall2/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/MiddleWall2/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/MiddleWall2/Wall4" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+
+[node name="Wall5" type="Node2D" parent="Top/VerticalBricks/MiddleWall2"]
+position = Vector2(-1416, 1232)
+
+[node name="brick" parent="Top/VerticalBricks/MiddleWall2/Wall5" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/MiddleWall2/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/MiddleWall2/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/MiddleWall2/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/MiddleWall2/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/MiddleWall2/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/MiddleWall2/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/MiddleWall2/Wall5" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
+
+[node name="Wall6" type="Node2D" parent="Top/VerticalBricks/MiddleWall2"]
+position = Vector2(-1416, 1488)
+
+[node name="brick" parent="Top/VerticalBricks/MiddleWall2/Wall6" instance=ExtResource("3_lfrn8")]
+scale = Vector2(2, 2)
+
+[node name="brick2" parent="Top/VerticalBricks/MiddleWall2/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+
+[node name="brick3" parent="Top/VerticalBricks/MiddleWall2/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+
+[node name="brick4" parent="Top/VerticalBricks/MiddleWall2/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 96)
+scale = Vector2(2, 2)
+
+[node name="brick5" parent="Top/VerticalBricks/MiddleWall2/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 128)
+scale = Vector2(2, 2)
+
+[node name="brick6" parent="Top/VerticalBricks/MiddleWall2/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+
+[node name="brick7" parent="Top/VerticalBricks/MiddleWall2/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+
+[node name="brick8" parent="Top/VerticalBricks/MiddleWall2/Wall6" instance=ExtResource("3_lfrn8")]
+position = Vector2(0, -64)
+scale = Vector2(2, 2)
 
 [node name="ForestShadow" type="Sprite2D" parent="Top"]
 texture = ExtResource("2_0sr1o")
