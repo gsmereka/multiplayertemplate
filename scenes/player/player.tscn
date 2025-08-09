@@ -1,12 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://wsqekb8cav1t"]
+[gd_scene load_steps=18 format=3 uid="uid://wsqekb8cav1t"]
 
 [ext_resource type="Texture2D" uid="uid://c48ucov8jdbr0" path="res://assets/player/player.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://b24nt2q2yh8wf" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://dtbeoupwqbpyn" path="res://assets/loading_screen.png" id="2_0owmy"]
 [ext_resource type="Script" uid="uid://bv6oj48uda32v" path="res://scenes/weapon/weapon.gd" id="3_5gtgg"]
+[ext_resource type="PackedScene" uid="uid://ba5j15y16x08g" path="res://scenes/PortraitFrame/portrait_frame.tscn" id="3_fm80t"]
 [ext_resource type="Script" uid="uid://d23s71hk84b6x" path="res://scenes/player/inputs.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://d1pqf47bbrtbe" path="res://scenes/player/states/FiniteStateMachine.gd" id="3_lvxji"]
 [ext_resource type="Texture2D" uid="uid://78dlafcg4suy" path="res://assets/player/player - para o outro lado.png" id="3_qek5x"]
+[ext_resource type="Script" uid="uid://c0x4xfbeiv7ud" path="res://scenes/player/states/state_idle.gd" id="4_p47bc"]
 [ext_resource type="Script" uid="uid://c3vd0cp82i2d7" path="res://scenes/player/states/freeze.gd" id="5_75vfm"]
 [ext_resource type="Texture2D" uid="uid://5jbkwel4cdwy" path="res://assets/cw.png" id="5_h17s1"]
 [ext_resource type="Script" uid="uid://10ocq4ldvl4k" path="res://scenes/player/states/state_death_cam.gd" id="9_h17s1"]
@@ -28,13 +30,96 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 properties/2/path = NodePath(".:modulate")
 properties/2/spawn = true
-properties/2/replication_mode = 1
+properties/2/replication_mode = 2
 properties/3/path = NodePath(".:visible")
 properties/3/spawn = true
-properties/3/replication_mode = 1
+properties/3/replication_mode = 2
 properties/4/path = NodePath("CollisionShape2D:disabled")
 properties/4/spawn = true
-properties/4/replication_mode = 1
+properties/4/replication_mode = 2
+properties/5/path = NodePath(".:current_state")
+properties/5/spawn = true
+properties/5/replication_mode = 2
+properties/6/path = NodePath(".:hp")
+properties/6/spawn = true
+properties/6/replication_mode = 2
+
+[sub_resource type="GDScript" id="GDScript_je7p5"]
+script/source = "extends State
+
+@export var player: CharacterBody2D
+@export var inputs: Node
+@onready var MOTION_SPEED = player.MOTION_SPEED
+
+var death_cam: Camera2D = null
+var current_cam_index: int = 0
+var alive_players: Array = []
+
+func Enter():
+	player.visible = false
+	player.collision_shape.disabled = true
+	player.modulate = Color(1, 1, 1)
+	player.camera.enabled = false
+
+	_update_alive_players()
+	_select_random_death_cam()
+
+func Update(_delta: float):
+	if Input.is_action_just_pressed(\"space\"):
+		Revive()
+
+	if Input.is_action_just_pressed(\"left_click\"):
+		_update_alive_players()
+
+		if alive_players.size() == 0:
+			if death_cam:
+				death_cam.enabled = false
+				death_cam = null
+			return
+
+		# Desativa a câmera atual
+		if death_cam:
+			death_cam.enabled = false
+
+		# Troca para o próximo player vivo
+		current_cam_index = (current_cam_index + 1) % alive_players.size()
+		var next_player = alive_players[current_cam_index]
+		death_cam = next_player.camera
+		if death_cam:
+			death_cam.enabled = true
+
+func Exit():
+	pass
+
+func Revive():
+	player.teleport_to_random_spawn_point()
+	player.visible = true
+	player.collision_shape.disabled = false
+	player.states.change_state(self, \"idle\")
+	if death_cam:
+		death_cam.enabled = false
+		death_cam = null
+	player.camera.enabled = true
+
+# Atualiza a lista de players vivos (visíveis)
+func _update_alive_players():
+	alive_players.clear()
+	for child in player.get_parent().get_children():
+		var cam = child.camera
+		if cam and cam is Camera2D:
+			alive_players.append(child)
+
+# Escolhe uma câmera aleatória de um player vivo
+func _select_random_death_cam():
+	if alive_players.size() > 0:
+		current_cam_index = randi() % alive_players.size()
+		var chosen_player = alive_players[current_cam_index]
+		death_cam = chosen_player.camera
+		if death_cam:
+			death_cam.enabled = true
+	else:
+		death_cam = null
+"
 
 [sub_resource type="GDScript" id="GDScript_h17s1"]
 script/source = "extends State
@@ -87,7 +172,10 @@ func Craft():
 "
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputs", "states", "camera", "collision_shape", "canvas", "interface", "loadingScene", "weapon")]
+collision_layer = 0
 motion_mode = 1
+platform_on_leave = 2
+platform_floor_layers = 4294967040
 script = ExtResource("1_dovo2")
 inputs = NodePath("Inputs")
 states = NodePath("States")
@@ -110,6 +198,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Loading" type="TextureRect" parent="CanvasLayer/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -119,6 +208,9 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_0owmy")
+
+[node name="PortraitFrame" parent="CanvasLayer/Control" instance=ExtResource("3_fm80t")]
+visible = false
 
 [node name="Weapon" type="Node2D" parent="."]
 script = ExtResource("3_5gtgg")
@@ -157,12 +249,13 @@ replication_config = SubResource("SceneReplicationConfig_gmlin")
 [node name="Inputs" type="Node" parent="."]
 script = ExtResource("3_gmlin")
 
-[node name="States" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="States" type="Node" parent="." node_paths=PackedStringArray("initial_state", "player")]
 script = ExtResource("3_lvxji")
 initial_state = NodePath("idle")
+player = NodePath("..")
 
 [node name="idle_backup" type="Node" parent="States" node_paths=PackedStringArray("player", "inputs")]
-script = ExtResource("9_h17s1")
+script = SubResource("GDScript_je7p5")
 player = NodePath("../..")
 inputs = NodePath("../../Inputs")
 metadata/_custom_type_script = "uid://s1feqfw0yldx"
@@ -173,10 +266,12 @@ player = NodePath("../..")
 inputs = NodePath("../../Inputs")
 metadata/_custom_type_script = "uid://s1feqfw0yldx"
 
-[node name="idle" type="Node" parent="States" node_paths=PackedStringArray("player", "inputs")]
-script = ExtResource("9_h17s1")
+[node name="idle" type="Node" parent="States" node_paths=PackedStringArray("player", "inputs", "vision", "portrait")]
+script = ExtResource("4_p47bc")
 player = NodePath("../..")
 inputs = NodePath("../../Inputs")
+vision = NodePath("../../Vision")
+portrait = NodePath("../../CanvasLayer/Control/PortraitFrame")
 metadata/_custom_type_script = "uid://s1feqfw0yldx"
 
 [node name="death_cam" type="Node" parent="States" node_paths=PackedStringArray("player", "inputs")]
@@ -189,5 +284,10 @@ metadata/_custom_type_script = "uid://s1feqfw0yldx"
 script = ExtResource("5_75vfm")
 player = NodePath("../..")
 
+[node name="Vision" type="RayCast2D" parent="."]
+target_position = Vector2(1200, 0)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0

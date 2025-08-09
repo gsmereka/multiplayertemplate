@@ -57,9 +57,9 @@ const next_scene = preload("res://scenes/game/game.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	#if GameState.is_hosting_game and Input.is_key_pressed(KEY_SPACE):
-		#recharge_scene_for_all.rpc()
-		#pass 
+	if GameState.is_hosting_game and Input.is_action_just_pressed("f5"):
+		recharge_scene_for_all.rpc()
+		pass 
 	pass
 
 @rpc("call_local", "any_peer")

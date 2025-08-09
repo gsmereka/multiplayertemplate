@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfbpq0554x8jg"]
+
+[ext_resource type="Texture2D" uid="uid://cff3jpwmpe2yk" path="res://assets/icons/coracão.png" id="1_ktxcf"]
+
+[node name="HeartIcon" type="TextureRect"]
+texture_filter = 1
+custom_minimum_size = Vector2(40, 40)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_ktxcf")
+stretch_mode = 5

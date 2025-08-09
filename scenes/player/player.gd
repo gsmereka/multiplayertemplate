@@ -13,6 +13,8 @@ const MOTION_SPEED = 180.0
 @export var interface : Control
 @export var loadingScene : Node
 @export var weapon : Weapon
+@export var current_state: String = "freeze"
+@export var hp = 3
 
 func _enter_tree():
 	is_local_player = is_multiplayer_authority()
@@ -27,13 +29,14 @@ func _ready() -> void:
 
 func _setup_player():
 	await get_tree().create_timer(1.1 ).timeout
-	global_position = get_parent().global_position
+	teleport_to_random_spawn_point()
 	states.force_change_state("idle")
 	pass
 
 func _physics_process(delta):
 	if is_local_player:
 		inputs.update()
+
 
 @rpc("any_peer", "call_local")
 func take_damage():
@@ -44,10 +47,26 @@ func take_damage():
 	cor_atual.r = max(cor_atual.r - passo, 0)
 	cor_atual.g = max(cor_atual.g - passo, 0)
 	cor_atual.b = max(cor_atual.b - passo, 0)
-
+	
+	hp -= 1
+	if hp <= 0:
+		states.force_change_state("death_cam")
+		hp = 3
 	# Aplica a nova cor
 	modulate = cor_atual
-	
+
+func teleport_to_random_spawn_point():
+	if !get_parent():
+		return
+	var spawns = get_parent().get_children()
+	var points := []
+	for i in spawns:
+		if i is Marker2D:
+			points.append(i)
+	if points.is_empty():
+		global_position = get_parent().global_position
+	var index = randi() % points.size()
+	global_position = points[index].global_position
 #func _physics_process(delta):
 	#if Input.is_action_just_pressed("space") && is_local_player:
 		#global_position = get_parent().global_position

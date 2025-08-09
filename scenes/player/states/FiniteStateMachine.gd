@@ -4,6 +4,7 @@ class_name FiniteStateMachine
 var states : Dictionary = {}
 var current_state : State
 @export var initial_state : State
+@export var player : Player
 
 #NOTE This is a generic finite_state_machine, it handles all states, changes to this code will affect
 	# everything that uses a state machine!
@@ -41,8 +42,6 @@ func force_change_state(new_state : String):
 		print("State is same, aborting")
 		return
 		
-	#NOTE Calling exit like so: (current_state.Exit()) may cause warnings when flushing queries, like when the enemy is being removed after death. 
-	#call_deferred is safe and prevents this from occuring. We get the Exit function from the state as a callable and then call it in a thread-safe manner
 	if current_state:
 		var exit_callable = Callable(current_state, "Exit")
 		exit_callable.call_deferred()
@@ -50,13 +49,17 @@ func force_change_state(new_state : String):
 	newState.Enter()
 	
 	current_state = newState
-	
+
+	# Atualiza o player.current_state com o nome do estado atual
+	if player:
+		player.current_state = current_state.name.to_lower()
+
+
 func change_state(source_state : State, new_state_name : String):
 	if !get_parent().is_local_player:
 		return
 	if source_state != current_state:
-		#print("Invalid change_state trying from: " + source_state.name + " but currently in: " + current_state.name)
-		#This typically only happens when trying to switch from death state following a force_change
+		# print("Invalid change_state trying from: " + source_state.name + " but currently in: " + current_state.name)
 		return
 
 	var new_state = states.get(new_state_name.to_lower())
@@ -70,5 +73,10 @@ func change_state(source_state : State, new_state_name : String):
 	new_state.Enter()
 	
 	current_state = new_state
+
+	# Atualiza o player.current_state com o nome do estado atual
+	if player:
+		player.current_state = current_state.name.to_lower()
+
 
 #endregion

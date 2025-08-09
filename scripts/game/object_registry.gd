@@ -1,19 +1,22 @@
 extends Node
 signal objects_updated()
 
-var node_spawner : Node
+var node_spawner_ground : Node
+var node_spawner_top : Node
 # Enum para tipos de objeto
 enum ObjectType {
 	DEFAULT,
 	TREE,
-	CRATE
+	CRATE,
+	BODY
 }
 
 # Dicionário com as cenas
 const OBJECT_SCENES := {
 	ObjectType.DEFAULT: preload("res://scenes/objects/object.tscn"),
 	ObjectType.TREE: preload("res://scenes/objects/object.tscn"),
-	ObjectType.CRATE: preload("res://scenes/objects/object.tscn")
+	ObjectType.CRATE: preload("res://scenes/objects/object.tscn"),
+	ObjectType.BODY: preload("res://scenes/objects/player_dead_body/player_dead_body.tscn")
 }
 
 # Lista de objetos instanciados (dados)
@@ -50,14 +53,23 @@ func spawn_object(data: Dictionary):
 	var instance = scene.instantiate()
 	instance.global_position = data["pos"]
 	instance.rotation = data["rot"]
-	
+
 	if instance.has_method("set_estado"):
 		instance.set_estado(data["estado"])
 
-	if !node_spawner:
-		get_tree().current_scene.add_child(instance)
+	# Adiciona o objeto com call_deferred para garantir que a árvore esteja pronta
+	if !node_spawner_top or !node_spawner_ground:
+		get_tree().current_scene.call_deferred("add_child", instance)
 	else:
-		node_spawner.add_child(instance, true)
+		if instance.has_method("get_level"):
+			if instance.get_level() == "top":
+				node_spawner_top.call_deferred("add_child", instance, true)
+			elif instance.get_level() == "ground":
+				node_spawner_ground.call_deferred("add_child", instance, true)
+		else:
+			node_spawner_ground.call_deferred("add_child", instance, true)
+			print("not type level found")
+
 
 func _on_peer_disconnected(id: int):
 	# Você pode limpar objetos associados ao peer aqui, se quiser
