@@ -14,6 +14,7 @@ const MOTION_SPEED = 180.0
 @export var loadingScene : Node
 @export var weapon : Weapon
 @export var current_state: String = "freeze"
+@export var hp = 3
 
 func _enter_tree():
 	is_local_player = is_multiplayer_authority()
@@ -36,7 +37,7 @@ func _physics_process(delta):
 	if is_local_player:
 		inputs.update()
 
-var hp = 3
+
 @rpc("any_peer", "call_local")
 func take_damage():
 	var passo : float = 0.1

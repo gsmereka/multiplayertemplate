@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://ba5j15y16x08g"]
+[gd_scene load_steps=5 format=3 uid="uid://ba5j15y16x08g"]
 
 [ext_resource type="Script" uid="uid://tuqwljplm360" path="res://scenes/PortraitFrame/portrait_frame.gd" id="1_jbvkp"]
 [ext_resource type="Texture2D" uid="uid://pcfn0crgsckt" path="res://icon.svg" id="2_jbvkp"]
+[ext_resource type="PackedScene" uid="uid://bfbpq0554x8jg" path="res://scenes/PortraitFrame/heart_icon.tscn" id="3_w7ya7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jbvkp"]
 font_size = 26
 
-[node name="PortraitFrame" type="Control" node_paths=PackedStringArray("frame", "frame_name")]
+[node name="PortraitFrame" type="Control" node_paths=PackedStringArray("frame", "frame_name", "hp_container")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 136.0
@@ -16,6 +17,7 @@ offset_bottom = 943.0
 script = ExtResource("1_jbvkp")
 frame = NodePath("TextureRect")
 frame_name = NodePath("Label")
+hp_container = NodePath("HPContainer")
 
 [node name="Control2" type="Control" parent="."]
 anchors_preset = 0
@@ -125,3 +127,14 @@ grow_vertical = 2
 texture = ExtResource("2_jbvkp")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="HPContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 0
+offset_left = -105.0
+offset_top = -91.0
+offset_right = -65.0
+offset_bottom = -51.0
+
+[node name="HeartIcon" parent="HPContainer" instance=ExtResource("3_w7ya7")]
+layout_mode = 2

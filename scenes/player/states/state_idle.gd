@@ -43,20 +43,13 @@ func update_camera_position():
 	player.camera.global_position = player.camera.global_position.lerp(target_camera_pos, 0.1)  # suavemente segue
 	_update_vision_frame()
 
-const portrait_texture := preload("res://assets/player/portrait.png")
 func _update_vision_frame():
 	if vision.is_colliding():
 		var col = vision.get_collider()
 		if col is Player:
-			var player_id = col.name.to_int()
-			if PlayerRegistry.players.has(player_id):
-				portrait.frame_name.text = PlayerRegistry.players[player_id]
-				portrait.frame.texture = portrait_texture
-				portrait.show()
-			else:
-				push_error("ID de jogador inválido: %d" % player_id)
+			portrait.show_info(col)
 	else:
-		portrait.hide()
+		portrait.hide_info()
 	pass
 
 func Process_update(_delta:float):
