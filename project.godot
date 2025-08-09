@@ -118,3 +118,7 @@ f5={
 [physics]
 
 2d/default_gravity=0.0
+
+[steam]
+
+initialization/app_id=480
