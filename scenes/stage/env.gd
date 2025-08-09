@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var daylight : CanvasModulate = $CanvasModulate
+@onready var daylight : ColorRect = $DayLight
 
 var day_duration := 60.0  # duração total do ciclo em segundos
 var elapsed_time := 0.0
