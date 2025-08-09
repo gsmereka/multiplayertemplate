@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://wsqekb8cav1t"]
+[gd_scene load_steps=22 format=3 uid="uid://wsqekb8cav1t"]
 
 [ext_resource type="Texture2D" uid="uid://c48ucov8jdbr0" path="res://assets/player/player.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://b24nt2q2yh8wf" path="res://scenes/player/player.gd" id="1_dovo2"]
@@ -12,11 +12,15 @@
 [ext_resource type="Script" uid="uid://c3vd0cp82i2d7" path="res://scenes/player/states/freeze.gd" id="5_75vfm"]
 [ext_resource type="Texture2D" uid="uid://5jbkwel4cdwy" path="res://assets/cw.png" id="5_h17s1"]
 [ext_resource type="Script" uid="uid://10ocq4ldvl4k" path="res://scenes/player/states/state_death_cam.gd" id="9_h17s1"]
+[ext_resource type="PackedScene" uid="uid://dkxgujoced2xr" path="res://scenes/player/fov.tscn" id="13_gx1jg"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_h17s1"]
 properties/0/path = NodePath("Fire:visible")
 properties/0/spawn = true
 properties/0/replication_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fm80t"]
+light_mode = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8afob"]
 radius = 27.2947
@@ -171,6 +175,12 @@ func Craft():
 	pass
 "
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ugbui"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gx1jg"]
+blend_mode = 2
+light_mode = 2
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputs", "states", "camera", "collision_shape", "canvas", "interface", "loadingScene", "weapon")]
 collision_layer = 2147483648
 motion_mode = 1
@@ -230,13 +240,15 @@ texture = ExtResource("5_h17s1")
 replication_config = SubResource("SceneReplicationConfig_h17s1")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_fm80t")
 position = Vector2(59, 0)
 rotation = 1.5708
 texture = ExtResource("1_8afob")
 
 [node name="Player-ParaOOutroLado" type="Sprite2D" parent="Sprite"]
-modulate = Color(80, 80, 80, 0.536)
+modulate = Color(0.89, 0.89, 0.89, 1)
 show_behind_parent = true
+use_parent_material = true
 position = Vector2(5.00014, 38)
 scale = Vector2(3.1, 2)
 texture = ExtResource("3_qek5x")
@@ -271,7 +283,7 @@ metadata/_custom_type_script = "uid://s1feqfw0yldx"
 script = ExtResource("4_p47bc")
 player = NodePath("../..")
 inputs = NodePath("../../Inputs")
-vision = NodePath("../../Vision")
+vision = NodePath("../../Vision/Vision")
 portrait = NodePath("../../CanvasLayer/Control/PortraitFrame")
 metadata/_custom_type_script = "uid://s1feqfw0yldx"
 
@@ -285,11 +297,55 @@ metadata/_custom_type_script = "uid://s1feqfw0yldx"
 script = ExtResource("5_75vfm")
 player = NodePath("../..")
 
-[node name="Vision" type="RayCast2D" parent="."]
-target_position = Vector2(1200, 0)
-collision_mask = 2147483648
-
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
+
+[node name="Vision" type="Node2D" parent="."]
+
+[node name="FOV" parent="Vision" instance=ExtResource("13_gx1jg")]
+
+[node name="left" parent="Vision/FOV" index="3"]
+modulate = Color(1, 1, 1, 0)
+
+[node name="right" parent="Vision/FOV" index="4"]
+modulate = Color(1, 1, 1, 0)
+
+[node name="LightOccluder2D" parent="Vision/FOV" index="5"]
+self_modulate = Color(1, 1, 1, 0)
+
+[node name="Vision" type="RayCast2D" parent="Vision"]
+target_position = Vector2(1200, 0)
+collision_mask = 2147483648
+
+[node name="CanvasGroup" type="CanvasGroup" parent="Vision"]
+z_index = 50
+
+[node name="Shadow" type="ColorRect" parent="Vision/CanvasGroup"]
+light_mask = 524288
+visibility_layer = 524288
+material = SubResource("CanvasItemMaterial_ugbui")
+offset_left = -2341.0
+offset_top = -1571.0
+offset_right = 2155.0
+offset_bottom = 1535.0
+color = Color(0, 0, 0, 0.713726)
+
+[node name="ContrastVision" type="ColorRect" parent="Vision/CanvasGroup"]
+light_mask = 524288
+visibility_layer = 524288
+material = SubResource("CanvasItemMaterial_gx1jg")
+offset_left = -2345.0
+offset_top = -1546.0
+offset_right = 2173.0
+offset_bottom = 1564.0
+
+[node name="PointLight2D" type="PointLight2D" parent="Vision/CanvasGroup"]
+range_item_cull_mask = 524288
+shadow_enabled = true
+shadow_item_cull_mask = 524289
+texture = ExtResource("5_h17s1")
+texture_scale = 5.0
+
+[editable path="Vision/FOV"]

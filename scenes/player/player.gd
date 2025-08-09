@@ -23,11 +23,13 @@ func _enter_tree():
 		camera.enabled = true
 
 func _ready() -> void:
+	$Vision/FOV.hide()
 	states.force_change_state("freeze")
 	if is_local_player:
 		_setup_player()
 
 func _setup_player():
+	$Vision/FOV.show()
 	await get_tree().create_timer(1.1 ).timeout
 	teleport_to_random_spawn_point()
 	states.force_change_state("idle")
