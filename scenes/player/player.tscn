@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://5jbkwel4cdwy" path="res://assets/cw.png" id="5_h17s1"]
 [ext_resource type="Script" uid="uid://10ocq4ldvl4k" path="res://scenes/player/states/state_death_cam.gd" id="9_h17s1"]
 [ext_resource type="Script" uid="uid://b2vgwhfsw85tc" path="res://scenes/player/small_l.gd" id="13_ugbui"]
-[ext_resource type="Texture2D" uid="uid://jgnygd7kf2xa" path="res://assets/light.png" id="14_fcs02"]
+[ext_resource type="Texture2D" uid="uid://dfwun8ynv4kk5" path="res://assets/light2.png" id="14_ugbui"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_h17s1"]
 properties/0/path = NodePath("Fire:visible")
@@ -337,7 +337,7 @@ blend_mode = 2
 range_item_cull_mask = 8
 shadow_enabled = true
 shadow_item_cull_mask = 8
-texture = ExtResource("14_fcs02")
+texture = ExtResource("14_ugbui")
 offset = Vector2(10, 0)
 texture_scale = 1.5
 
