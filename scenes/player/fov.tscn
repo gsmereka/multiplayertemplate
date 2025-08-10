@@ -17,6 +17,7 @@ polygon = PackedVector2Array(0, -5, 0, 5)
 [node name="small_l" type="PointLight2D" parent="."]
 position = Vector2(-10, 0)
 blend_mode = 2
+range_item_cull_mask = 8
 shadow_enabled = true
 shadow_item_cull_mask = 8
 texture = ExtResource("1_dkggu")
@@ -27,6 +28,7 @@ script = ExtResource("2_ja76f")
 [node name="small_l2" type="PointLight2D" parent="."]
 position = Vector2(-10, 0)
 blend_mode = 2
+range_item_cull_mask = 8
 shadow_enabled = true
 shadow_item_cull_mask = 8
 texture = ExtResource("3_y4uqo")
@@ -38,6 +40,7 @@ light_mask = 3
 visibility_layer = 3
 position = Vector2(34, 0)
 blend_mode = 2
+range_item_cull_mask = 8
 shadow_enabled = true
 shadow_item_cull_mask = 8
 texture = ExtResource("1_dkggu")
