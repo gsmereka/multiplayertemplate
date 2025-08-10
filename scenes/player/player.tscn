@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://wsqekb8cav1t"]
+[gd_scene load_steps=26 format=3 uid="uid://wsqekb8cav1t"]
 
 [ext_resource type="Texture2D" uid="uid://c48ucov8jdbr0" path="res://assets/player/player.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://b24nt2q2yh8wf" path="res://scenes/player/player.gd" id="1_dovo2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://d23s71hk84b6x" path="res://scenes/player/inputs.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://d1pqf47bbrtbe" path="res://scenes/player/states/FiniteStateMachine.gd" id="3_lvxji"]
 [ext_resource type="Texture2D" uid="uid://78dlafcg4suy" path="res://assets/player/player - para o outro lado.png" id="3_qek5x"]
+[ext_resource type="PackedScene" uid="uid://bl67pf80ytuum" path="res://scenes/Interface/points_counter.tscn" id="4_fcs02"]
 [ext_resource type="Script" uid="uid://c0x4xfbeiv7ud" path="res://scenes/player/states/state_idle.gd" id="4_p47bc"]
 [ext_resource type="Script" uid="uid://c3vd0cp82i2d7" path="res://scenes/player/states/freeze.gd" id="5_75vfm"]
 [ext_resource type="Texture2D" uid="uid://5jbkwel4cdwy" path="res://assets/cw.png" id="5_h17s1"]
@@ -211,7 +212,6 @@ vision = NodePath("Vision")
 sprite = NodePath("Sprite")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -235,6 +235,8 @@ texture = ExtResource("2_0owmy")
 
 [node name="PortraitFrame" parent="CanvasLayer/Control" instance=ExtResource("3_fm80t")]
 visible = false
+
+[node name="PointsCounter" parent="CanvasLayer/Control" instance=ExtResource("4_fcs02")]
 
 [node name="Weapon" type="Node2D" parent="."]
 script = ExtResource("3_5gtgg")

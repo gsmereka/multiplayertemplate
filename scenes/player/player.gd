@@ -54,12 +54,7 @@ func take_damage(id : int = 0):
 	
 	hp -= 1
 	if hp <= 0:
-		if id != 0:
-			if PlayerRegistry.players_points.has(id):
-				PlayerRegistry.players_points[id] += 1
-			else:
-				PlayerRegistry.players_points[id] = 1
-			print(PlayerRegistry.players_points[id])
+		PlayerRegistry.update_points.rpc(id)
 		states.force_change_state("death_cam")
 		hp = 3
 	# Aplica a nova cor
