@@ -8,6 +8,8 @@ var players_points := {}
 func register_player(id: int, name: String):
 	players[id] = _make_string_unique(name)
 	players_points[id] = 0 # inicializa pontuação
+	if multiplayer.is_server():
+		update_points_to_new_player.rpc_id(id, players_points)
 	emit_signal("players_updated")
 
 func unregister_player(id: int):
@@ -34,3 +36,13 @@ func update_points(id : int, clear : bool = false):
 		else:
 			PlayerRegistry.players_points[id] = 1
 		emit_signal("players_updated")
+
+@rpc("any_peer", "call_local", "reliable")
+func update_points_to_new_player(points_data: Dictionary) -> void:
+	# Atualiza o dicionário local de pontos com os dados recebidos
+	players_points.clear()
+	for pid in points_data.keys():
+		players_points[pid] = points_data[pid]
+
+	# Dispara o sinal para atualizar a interface
+	emit_signal("players_updated")
