@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://d1qmlxssqyb76" path="res://scenes/stage/env.gd" id="7_bdhmt"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bdhmt"]
-properties/0/path = NodePath("Global Ilumination/ColorRect:color")
+properties/0/path = NodePath("DayLight:color")
 properties/0/spawn = true
 properties/0/replication_mode = 2
 
@@ -1204,8 +1204,9 @@ spawn_path = NodePath("../../Ground/ObjectsGroundSpawn")
 _spawnable_scenes = PackedStringArray("uid://bokfkixk25s8k")
 spawn_path = NodePath("../../Top/ObjectsTopSpawn")
 
-[node name="Env" type="Node2D" parent="."]
+[node name="Env" type="Node2D" parent="." node_paths=PackedStringArray("daylight")]
 script = ExtResource("7_bdhmt")
+daylight = NodePath("DayLight")
 dawn_dusk_color = Color(1, 0.501961, 0.2, 0.384314)
 day_color = Color(1, 1, 1, 0)
 
