@@ -23,7 +23,11 @@ func _make_string_unique(name: String) -> String:
 	return unique_name
 
 @rpc("any_peer", "call_local")
-func update_points(id : int):
+func update_points(id : int, clear : bool = false):
+	if clear:
+		players_points.clear()
+		emit_signal("players_updated")
+		return
 	if id != 0:
 		if PlayerRegistry.players_points.has(id):
 			PlayerRegistry.players_points[id] += 1
