@@ -43,7 +43,7 @@ func _physics_process(delta):
 
 
 @rpc("any_peer", "call_local")
-func take_damage():
+func take_damage(id : int = 0):
 	var passo : float = 0.1
 	var cor_atual = modulate
 
@@ -54,6 +54,12 @@ func take_damage():
 	
 	hp -= 1
 	if hp <= 0:
+		if id != 0:
+			if PlayerRegistry.players_points.has(id):
+				PlayerRegistry.players_points[id] += 1
+			else:
+				PlayerRegistry.players_points[id] = 1
+			print(PlayerRegistry.players_points[id])
 		states.force_change_state("death_cam")
 		hp = 3
 	# Aplica a nova cor

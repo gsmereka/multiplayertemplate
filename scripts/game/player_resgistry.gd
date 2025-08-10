@@ -2,8 +2,16 @@ extends Node
 signal players_updated()
 
 var players := {}
+var players_points := {}
 
+# PlayerRegistry.gd
 func register_player(id: int, name: String):
+	players[id] = _make_string_unique(name)
+	players_points[id] = 0 # inicializa pontuação
+	emit_signal("players_updated")
+
+
+func register_player_points(id: int, name: String):
 	players[id] = _make_string_unique(name)
 	emit_signal("players_updated")
 
