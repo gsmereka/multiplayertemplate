@@ -9,7 +9,7 @@ var current_cam_index: int = 0
 var alive_players: Array = []
 
 func Enter():
-	player.visible = false
+	player.sprite.visible = false
 	DropBody()
 	player.collision_shape.disabled = true
 	player.modulate = Color(1, 1, 1)
@@ -19,6 +19,13 @@ func Enter():
 	_select_random_death_cam()
 
 func Update(_delta: float):
+	# Atualiza posição e rotação da vision
+	if death_cam and current_cam_index < alive_players.size():
+		var observed_player = alive_players[current_cam_index]
+		if observed_player:
+			player.vision.global_position = observed_player.global_position
+			player.vision.rotation = observed_player.rotation
+
 	if Input.is_action_just_pressed("space"):
 		Revive()
 
@@ -31,11 +38,9 @@ func Update(_delta: float):
 				death_cam = null
 			return
 
-		# Desativa a câmera atual
 		if death_cam:
 			death_cam.enabled = false
 
-		# Troca para o próximo player vivo
 		current_cam_index = (current_cam_index + 1) % alive_players.size()
 		var next_player = alive_players[current_cam_index]
 		death_cam = next_player.camera
@@ -47,7 +52,7 @@ func Exit():
 
 func Revive():
 	player.teleport_to_random_spawn_point()
-	player.visible = true
+	player.sprite.visible = true
 	player.collision_shape.disabled = false
 	player.states.change_state(self, "idle")
 	if death_cam:
@@ -55,7 +60,10 @@ func Revive():
 		death_cam = null
 	player.camera.enabled = true
 
-# Atualiza a lista de players vivos (visíveis)
+	# Vision volta a seguir o próprio player
+	player.vision.global_position = player.global_position
+	player.vision.rotation = player.rotation
+
 func _update_alive_players():
 	alive_players.clear()
 	for child in player.get_parent().get_children():
@@ -64,7 +72,6 @@ func _update_alive_players():
 			if cam and cam is Camera2D:
 				alive_players.append(child)
 
-# Escolhe uma câmera aleatória de um player vivo
 func _select_random_death_cam():
 	if alive_players.size() > 0:
 		current_cam_index = randi() % alive_players.size()
@@ -78,8 +85,4 @@ func _select_random_death_cam():
 func DropBody():
 	var spawn_pos := player.global_position
 	var rot := player.rotation
-	#var estado := Ja esta aleatorio. mas posso escolher o metodo depois por aqui
 	ObjectRegistry.request_spawn.rpc_id(1, ObjectRegistry.ObjectType.BODY, spawn_pos, rot, str(randi() % 8))
-
-	#ObjectRegistry.request_spawn.rpc_id(1, ObjectRegistry.ObjectType.BODY, spawn_pos, rot, "1")
-	pass

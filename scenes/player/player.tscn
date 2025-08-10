@@ -48,6 +48,9 @@ properties/5/replication_mode = 2
 properties/6/path = NodePath(".:hp")
 properties/6/spawn = true
 properties/6/replication_mode = 2
+properties/7/path = NodePath("Sprite:visible")
+properties/7/spawn = true
+properties/7/replication_mode = 2
 
 [sub_resource type="GDScript" id="GDScript_je7p5"]
 script/source = "extends State
@@ -190,7 +193,7 @@ polygon = PackedVector2Array(0, -5, 0, 5)
 blend_mode = 2
 light_mode = 2
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputs", "states", "camera", "collision_shape", "canvas", "interface", "loadingScene", "weapon", "vision")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputs", "states", "camera", "collision_shape", "canvas", "interface", "loadingScene", "weapon", "vision", "sprite")]
 collision_layer = 2147483648
 motion_mode = 1
 platform_on_leave = 2
@@ -205,6 +208,7 @@ interface = NodePath("CanvasLayer/Control")
 loadingScene = NodePath("CanvasLayer/Control/Loading")
 weapon = NodePath("Weapon")
 vision = NodePath("Vision")
+sprite = NodePath("Sprite")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false

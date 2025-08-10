@@ -1207,6 +1207,7 @@ spawn_path = NodePath("../../Top/ObjectsTopSpawn")
 [node name="Env" type="Node2D" parent="." node_paths=PackedStringArray("daylight")]
 script = ExtResource("7_bdhmt")
 daylight = NodePath("DayLight")
+night_color = Color(0.1443, 0.189345, 0.39, 0.337255)
 dawn_dusk_color = Color(1, 0.501961, 0.2, 0.384314)
 day_color = Color(1, 1, 1, 0)
 

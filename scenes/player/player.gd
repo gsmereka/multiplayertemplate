@@ -16,6 +16,7 @@ const MOTION_SPEED = 180.0
 @export var current_state: String = "freeze"
 @export var hp = 3
 @export var vision : Node2D
+@export var sprite : Sprite2D
 
 func _enter_tree():
 	is_local_player = is_multiplayer_authority()
