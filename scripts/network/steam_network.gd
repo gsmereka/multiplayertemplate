@@ -68,5 +68,5 @@ func _on_lobby_joined(lobby_id: int, _a, _b, response: int):
 		emit_signal("error", "Failed to join Steam lobby.")
    # Código dentro do seu script principal (por exemplo, game.gd)
 
-func _on_join_requested(lobby_id):
+func _on_join_requested(lobby_id: int, steam_id: int):
 	Steam.joinLobby(lobby_id)
