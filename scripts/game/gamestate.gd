@@ -10,9 +10,6 @@ signal game_ended()
 signal error_occurred(message)
 
 func _ready():
-	OS.set_environment("SteamAppID", str(480))
-	OS.set_environment("SteamGameID", str(480))
-	Steam.steamInit()
 	#network = EnetNetwork;
 	network = SteamNetwork
 	network.connected.connect(_on_connected)
@@ -52,8 +49,8 @@ func _on_peer_connected(id: int):
 func _on_peer_disconnected(id: int):
 	PlayerRegistry.unregister_player(id)
 
-#const gameScene = "res://scenes/game/game.tscn"
-const  gameScene = "res://node_2d.tscn"
+const gameScene = "res://scenes/game/game.tscn"
+#const  gameScene = "res://node_2d.tscn"
 func	load_game():
 	get_tree().call_deferred(&"change_scene_to_packed", preload(gameScene))
 	pass

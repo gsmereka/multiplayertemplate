@@ -7,10 +7,13 @@ var peer: SteamMultiplayerPeer
 var steam_id := 0
 var steam_username : String = ""
 
+func _process(delta: float) -> void:
+	Steam.run_callbacks()
+
 func _ready():
+	#Steam.steamInitEx(true, 480)
 	steam_id = Steam.getSteamID()
 	steam_username = Steam.getPersonaName()
-	#Steam.steamInitEx(true, 480)
 	#print("Macarrao")
 	Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_created.connect(_on_lobby_created)
@@ -19,8 +22,6 @@ func _ready():
 	print("User logged in: ", Steam.loggedOn())
 	print("Steam name: ", Steam.getPersonaName())
 	print("Matchmaking disponível: ", Steam.createLobby != null)
-func _process(_delta : float):
-	Steam.run_callbacks()
 
 func host_game(player_name: String):
 	print("Before createLobby")
@@ -47,7 +48,7 @@ func _on_lobby_created(status: int, lobby_id: int):
 		print("🔧 Definindo multiplayer.set_multiplayer_peer")
 		multiplayer.set_multiplayer_peer(peer)
 
-		print("📡 Não Emitindo sinal 'connected'")
+		print("📡 Emitindo sinal 'connected'")
 		emit_signal("connected")
 	else:
 		print("❌ Falha ao criar lobby")
@@ -55,6 +56,8 @@ func _on_lobby_created(status: int, lobby_id: int):
 
 
 func _on_lobby_joined(lobby_id: int, _a, _b, response: int):
+	if GameState.is_hosting_game:
+		return
 	if response == Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
 		var id = Steam.getLobbyOwner(lobby_id)
 		peer = SteamMultiplayerPeer.new()
