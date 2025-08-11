@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bhdlv4p7cy2wx"]
+[gd_scene load_steps=29 format=3 uid="uid://bhdlv4p7cy2wx"]
 
 [ext_resource type="Texture2D" uid="uid://d08vr5dwfnkar" path="res://assets/map/forest_ground.png" id="1_7h61r"]
 [ext_resource type="Texture2D" uid="uid://cg5w1b78pksex" path="res://assets/map/forest_shadow.png" id="2_0sr1o"]
@@ -7,8 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://dmx480t4ouqqh" path="res://scenes/stage/multiplayer_manager.tscn" id="3_kelw5"]
 [ext_resource type="PackedScene" uid="uid://b5ws40aaoryof" path="res://scenes/objects/brick/brick.tscn" id="3_lfrn8"]
 [ext_resource type="Script" uid="uid://dxf4byyibjatk" path="res://scenes/stage/objects_manager.gd" id="4_kelw5"]
+[ext_resource type="Texture2D" uid="uid://bd8td66skwyp2" path="res://assets/player/bodies/body (1).png" id="5_10c2w"]
 [ext_resource type="Texture2D" uid="uid://brdrqxl0kra70" path="res://assets/objects/bloco.png" id="6_2a8rs"]
+[ext_resource type="Texture2D" uid="uid://bgyagaxb3g2ca" path="res://assets/player/bodies/body (2).png" id="6_pg2xm"]
 [ext_resource type="Script" uid="uid://d1qmlxssqyb76" path="res://scenes/stage/env.gd" id="7_bdhmt"]
+[ext_resource type="Texture2D" uid="uid://wwteix8cyp2w" path="res://assets/player/bodies/body (3).png" id="7_gc57s"]
+[ext_resource type="Texture2D" uid="uid://cuq2ktojikb54" path="res://assets/player/bodies/body (4).png" id="8_8b66f"]
+[ext_resource type="Texture2D" uid="uid://bmei6d3cb7g2g" path="res://assets/player/bodies/body (5).png" id="9_3jaai"]
+[ext_resource type="Texture2D" uid="uid://cb8kkd5i4kg2i" path="res://assets/player/bodies/body (6).png" id="10_1iff4"]
+[ext_resource type="Texture2D" uid="uid://l6xu8q4stlgj" path="res://assets/player/bodies/body (7).png" id="11_4vuph"]
+[ext_resource type="Texture2D" uid="uid://cvfesv4angocd" path="res://assets/player/bodies/body (8).png" id="12_wdnak"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2a8rs"]
 blend_mode = 1
@@ -23,6 +31,20 @@ polygon = PackedVector2Array(-2.5, -280, -22.5, -222.5, -287.5, -242.5, -515, -8
 closed = false
 cull_mode = 2
 polygon = PackedVector2Array(-61.5049, -398.472, -86.9536, -368.852, -149.937, -337.296, -102.329, -344.08, -69.6675, -188.571, -56.665, -55.8599, 43.4888, 100.667)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5v6r0"]
+light_mode = 2
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_o4rja"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 0
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 0
+properties/2/path = NodePath(".:_estado")
+properties/2/spawn = true
+properties/2/replication_mode = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0hgb"]
 size = Vector2(16, 16)
@@ -78,7 +100,8 @@ light_mask = 3
 visibility_layer = 3
 z_index = 1
 material = SubResource("CanvasItemMaterial_2a8rs")
-scale = Vector2(7, 7)
+position = Vector2(-507.5, 605)
+scale = Vector2(15, 15)
 texture = ExtResource("2_5i0tg")
 
 [node name="PointLight2D" type="PointLight2D" parent="Ground/Firepitch7"]
@@ -87,7 +110,7 @@ range_item_cull_mask = 786433
 shadow_enabled = true
 shadow_item_cull_mask = 2
 texture = ExtResource("2_5i0tg")
-texture_scale = 5.0
+texture_scale = 6.0
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Ground/Firepitch7"]
 occluder = SubResource("OccluderPolygon2D_4j704")
@@ -120,6 +143,50 @@ position = Vector2(-852, 634)
 
 [node name="Firepitch6" parent="Ground/Fires" instance=ExtResource("3_87uf6")]
 position = Vector2(405, 1493)
+
+[node name="PlayerDeadBody" type="Sprite2D" parent="Ground"]
+light_mask = 8
+visibility_layer = 8
+position = Vector2(-1777, 2019)
+
+[node name="Sprites" type="Node2D" parent="Ground/PlayerDeadBody"]
+
+[node name="Body(1)" type="Sprite2D" parent="Ground/PlayerDeadBody/Sprites"]
+visible = false
+texture = ExtResource("5_10c2w")
+
+[node name="Body(2)" type="Sprite2D" parent="Ground/PlayerDeadBody/Sprites"]
+visible = false
+texture = ExtResource("6_pg2xm")
+
+[node name="Body(3)" type="Sprite2D" parent="Ground/PlayerDeadBody/Sprites"]
+visible = false
+texture = ExtResource("7_gc57s")
+
+[node name="Body(4)" type="Sprite2D" parent="Ground/PlayerDeadBody/Sprites"]
+light_mask = 8
+visibility_layer = 8
+material = SubResource("CanvasItemMaterial_5v6r0")
+texture = ExtResource("8_8b66f")
+
+[node name="Body(5)" type="Sprite2D" parent="Ground/PlayerDeadBody/Sprites"]
+visible = false
+texture = ExtResource("9_3jaai")
+
+[node name="Body(6)" type="Sprite2D" parent="Ground/PlayerDeadBody/Sprites"]
+visible = false
+texture = ExtResource("10_1iff4")
+
+[node name="Body(7)" type="Sprite2D" parent="Ground/PlayerDeadBody/Sprites"]
+visible = false
+texture = ExtResource("11_4vuph")
+
+[node name="Body(8)" type="Sprite2D" parent="Ground/PlayerDeadBody/Sprites"]
+visible = false
+texture = ExtResource("12_wdnak")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Ground/PlayerDeadBody"]
+replication_config = SubResource("SceneReplicationConfig_o4rja")
 
 [node name="PlayerSpawn" type="Node2D" parent="."]
 position = Vector2(-1814, 1859)
