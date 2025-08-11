@@ -16,12 +16,12 @@ func unregister_player(id: int):
 	players.erase(id)
 	emit_signal("players_updated")
 
-func _make_string_unique(name: String) -> String:
-	var unique_name = name
+func _make_string_unique(name2: String) -> String:
+	var unique_name = name2
 	var counter = 1
 	while players.values().has(unique_name):
 		counter += 1
-		unique_name = name + " " + str(counter)
+		unique_name = name2 + " " + str(counter)
 	return unique_name
 
 @rpc("any_peer", "call_local")
