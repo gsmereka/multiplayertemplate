@@ -10,8 +10,8 @@ signal game_ended()
 signal error_occurred(message)
 
 func _ready():
-	#network = EnetNetwork;
-	network = SteamNetwork
+	network = EnetNetwork;
+	#network = SteamNetwork
 	network.connected.connect(_on_connected)
 	network.error.connect(_on_error)
 	PlayerRegistry.players_updated.connect(_on_players_updated)
