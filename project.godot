@@ -124,6 +124,8 @@ f5={
 [rendering]
 
 rendering_device/fallback_to_vulkan=false
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 
 [steam]
 
