@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bhdlv4p7cy2wx"]
+[gd_scene load_steps=19 format=3 uid="uid://bhdlv4p7cy2wx"]
 
 [ext_resource type="Texture2D" uid="uid://d08vr5dwfnkar" path="res://assets/map/forest_ground.png" id="1_7h61r"]
 [ext_resource type="Texture2D" uid="uid://cg5w1b78pksex" path="res://assets/map/forest_shadow.png" id="2_0sr1o"]
@@ -34,6 +34,12 @@ polygon = PackedVector2Array(31, 1, 31, -21, 9, -21, 9, 1)
 properties/0/path = NodePath("DayLight:color")
 properties/0/spawn = true
 properties/0/replication_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ugbui"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gx1jg"]
+blend_mode = 2
+light_mode = 2
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bdhmt"]
 blend_mode = 3
@@ -1443,15 +1449,40 @@ spawn_path = NodePath("../../Ground/ObjectsGroundSpawn")
 _spawnable_scenes = PackedStringArray("uid://bokfkixk25s8k")
 spawn_path = NodePath("../../Top/ObjectsTopSpawn")
 
-[node name="Env" type="Node2D" parent="." node_paths=PackedStringArray("daylight")]
+[node name="Env" type="Node2D" parent="." node_paths=PackedStringArray("daylight", "Shadow")]
 z_index = 2
 script = ExtResource("7_bdhmt")
 daylight = NodePath("DayLight")
+Shadow = NodePath("CanvasGroup/Shadow")
 night_color = Color(1, 1, 1, 1)
 dawn_dusk_color = Color(1, 0.501961, 0.2, 0.384314)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Env"]
 replication_config = SubResource("SceneReplicationConfig_bdhmt")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="Env"]
+z_index = 50
+position = Vector2(-7119, -4217)
+
+[node name="Shadow" type="ColorRect" parent="Env/CanvasGroup"]
+light_mask = 524288
+visibility_layer = 524288
+material = SubResource("CanvasItemMaterial_ugbui")
+offset_left = -2341.0
+offset_top = -1571.0
+offset_right = 15643.0
+offset_bottom = 10853.0
+pivot_offset = Vector2(1543, 962)
+color = Color(0, 0, 0, 0.0941176)
+
+[node name="LightMask" type="ColorRect" parent="Env/CanvasGroup"]
+light_mask = 524288
+visibility_layer = 524288
+material = SubResource("CanvasItemMaterial_gx1jg")
+offset_left = -2345.0
+offset_top = -1546.0
+offset_right = 15727.0
+offset_bottom = 10894.0
 
 [node name="DayLight" type="ColorRect" parent="Env"]
 material = SubResource("CanvasItemMaterial_bdhmt")

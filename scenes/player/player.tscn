@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://wsqekb8cav1t"]
+[gd_scene load_steps=25 format=3 uid="uid://wsqekb8cav1t"]
 
 [ext_resource type="Texture2D" uid="uid://c48ucov8jdbr0" path="res://assets/player/player.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://b24nt2q2yh8wf" path="res://scenes/player/player.gd" id="1_dovo2"]
@@ -188,8 +188,6 @@ polygon = PackedVector2Array(0, 0, 1000, 0)
 closed = false
 polygon = PackedVector2Array(0, -5, 0, 5)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ugbui"]
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gx1jg"]
 blend_mode = 2
 light_mode = 2
@@ -378,35 +376,13 @@ occluder_light_mask = 8
 target_position = Vector2(1200, 0)
 collision_mask = 2147483649
 
-[node name="CanvasGroup" type="CanvasGroup" parent="Vision"]
-z_index = 50
-
-[node name="Shadow" type="ColorRect" parent="Vision/CanvasGroup"]
-light_mask = 524288
-visibility_layer = 524288
-material = SubResource("CanvasItemMaterial_ugbui")
-offset_left = -2341.0
-offset_top = -1571.0
-offset_right = 2155.0
-offset_bottom = 1535.0
-pivot_offset = Vector2(1543, 962)
-color = Color(0, 0, 0, 0.713726)
-
-[node name="ContrastVision" type="ColorRect" parent="Vision/CanvasGroup"]
-light_mask = 524288
-visibility_layer = 524288
-material = SubResource("CanvasItemMaterial_gx1jg")
-offset_left = -2345.0
-offset_top = -1546.0
-offset_right = 2173.0
-offset_bottom = 1564.0
-
-[node name="PointLight2D" type="PointLight2D" parent="Vision/CanvasGroup"]
+[node name="PointLight2D" type="PointLight2D" parent="Vision"]
+blend_mode = 2
 range_item_cull_mask = 524288
 shadow_enabled = true
 shadow_item_cull_mask = 524289
-texture = ExtResource("5_h17s1")
-texture_scale = 5.0
+texture = ExtResource("14_ugbui")
+texture_scale = 0.5
 
 [node name="CanvasGroup2" type="CanvasGroup" parent="Vision"]
 z_index = 50
