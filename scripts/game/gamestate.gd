@@ -11,6 +11,7 @@ signal error_occurred(message)
 
 func _ready():
 	network = EnetNetwork;
+	#network = SteamNetwork
 	network.connected.connect(_on_connected)
 	network.error.connect(_on_error)
 	PlayerRegistry.players_updated.connect(_on_players_updated)
@@ -49,6 +50,14 @@ func _on_peer_disconnected(id: int):
 	PlayerRegistry.unregister_player(id)
 
 const gameScene = "res://scenes/game/game.tscn"
+#const  gameScene = "res://node_2d.tscn"
 func	load_game():
 	get_tree().call_deferred(&"change_scene_to_packed", preload(gameScene))
 	pass
+const GameScene = preload(gameScene)
+
+#func load_game():
+	#return
+	#var Game = GameScene.instantiate()
+	#
+	#get_tree().root.add_child(Game)

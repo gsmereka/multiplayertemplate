@@ -10,6 +10,7 @@ func _refresh_players():
 	pass
 
 func _on_host_pressed():
+	$".".hide()
 	GameState.host_game($Name.text)
 
 func _on_join_pressed():

@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SteamNetwork="res://scripts/network/steam_network.gd"
 GameState="*res://scripts/game/gamestate.gd"
 EnetNetwork="*res://scripts/network/enet_network.gd"
 PlayerRegistry="*res://scripts/game/player_resgistry.gd"
@@ -25,6 +26,8 @@ ObjectRegistry="*res://scripts/game/object_registry.gd"
 
 [debug]
 
+settings/stdout/verbose_stdout=true
+file_logging/log_path="C:/Users/Gabriel/Desktop/log.log"
 shapes/collision/shape_color=Color(0.7, 0.7, 0.7, 0.419608)
 
 [display]
@@ -119,6 +122,11 @@ f5={
 
 2d/default_gravity=0.0
 
+[rendering]
+
+rendering_device/fallback_to_vulkan=false
+
 [steam]
 
 initialization/app_id=480
+initialization/initialize_on_startup=true
