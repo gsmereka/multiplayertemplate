@@ -20,7 +20,7 @@ func _ready():
 	print("Steam name: ", Steam.getPersonaName())
 	print("Matchmaking disponível: ", Steam.createLobby != null)
 func _process(_delta : float):
-	print(Steam.run_callbacks())
+	Steam.run_callbacks()
 
 func host_game(player_name: String):
 	print("Before createLobby")
