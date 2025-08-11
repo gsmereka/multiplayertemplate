@@ -59,6 +59,7 @@ const next_scene = preload("res://scenes/game/game.tscn")
 func _process(_delta):
 	if GameState.is_hosting_game and Input.is_action_just_pressed("f5"):
 		recharge_scene_for_all.rpc()
+		PlayerRegistry.update_points.rpc(0, true)
 		pass 
 	pass
 

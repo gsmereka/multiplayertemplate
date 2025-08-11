@@ -15,6 +15,8 @@ const MOTION_SPEED = 180.0
 @export var weapon : Weapon
 @export var current_state: String = "freeze"
 @export var hp = 3
+@export var vision : Node2D
+@export var sprite : Sprite2D
 
 func _enter_tree():
 	is_local_player = is_multiplayer_authority()
@@ -23,11 +25,13 @@ func _enter_tree():
 		camera.enabled = true
 
 func _ready() -> void:
+	vision.hide()
 	states.force_change_state("freeze")
 	if is_local_player:
 		_setup_player()
 
 func _setup_player():
+	vision.show()
 	await get_tree().create_timer(1.1 ).timeout
 	teleport_to_random_spawn_point()
 	states.force_change_state("idle")
@@ -39,7 +43,7 @@ func _physics_process(delta):
 
 
 @rpc("any_peer", "call_local")
-func take_damage():
+func take_damage(id : int = 0):
 	var passo : float = 0.1
 	var cor_atual = modulate
 
@@ -50,6 +54,7 @@ func take_damage():
 	
 	hp -= 1
 	if hp <= 0:
+		PlayerRegistry.update_points.rpc(id)
 		states.force_change_state("death_cam")
 		hp = 3
 	# Aplica a nova cor

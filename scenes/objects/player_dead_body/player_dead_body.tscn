@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0l258go5trpl"]
+[gd_scene load_steps=12 format=3 uid="uid://c0l258go5trpl"]
 
 [ext_resource type="Script" uid="uid://bfoh8o36beo4e" path="res://scenes/objects/player_dead_body/player_dead_body.gd" id="1_jchk2"]
 [ext_resource type="Texture2D" uid="uid://bd8td66skwyp2" path="res://assets/player/bodies/body (1).png" id="2_ufhnq"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://cb8kkd5i4kg2i" path="res://assets/player/bodies/body (6).png" id="7_jpeqn"]
 [ext_resource type="Texture2D" uid="uid://l6xu8q4stlgj" path="res://assets/player/bodies/body (7).png" id="8_4ckpo"]
 [ext_resource type="Texture2D" uid="uid://cvfesv4angocd" path="res://assets/player/bodies/body (8).png" id="9_v246k"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o4rja"]
+light_mode = 2
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_o4rja"]
 properties/0/path = NodePath(".:position")
@@ -25,37 +28,62 @@ properties/2/replication_mode = 0
 script = ExtResource("1_jchk2")
 
 [node name="Sprites" type="Node2D" parent="."]
+material = SubResource("CanvasItemMaterial_o4rja")
 
 [node name="Body(1)" type="Sprite2D" parent="Sprites"]
 visible = false
+light_mask = 8
+visibility_layer = 8
+use_parent_material = true
 texture = ExtResource("2_ufhnq")
 
 [node name="Body(2)" type="Sprite2D" parent="Sprites"]
 visible = false
+light_mask = 8
+visibility_layer = 8
+use_parent_material = true
 texture = ExtResource("3_gjfry")
 
 [node name="Body(3)" type="Sprite2D" parent="Sprites"]
 visible = false
+light_mask = 8
+visibility_layer = 8
+use_parent_material = true
 texture = ExtResource("4_euqs2")
 
 [node name="Body(4)" type="Sprite2D" parent="Sprites"]
 visible = false
+light_mask = 8
+visibility_layer = 8
+use_parent_material = true
 texture = ExtResource("5_jndjq")
 
 [node name="Body(5)" type="Sprite2D" parent="Sprites"]
 visible = false
+light_mask = 8
+visibility_layer = 8
+use_parent_material = true
 texture = ExtResource("6_mi6y0")
 
 [node name="Body(6)" type="Sprite2D" parent="Sprites"]
 visible = false
+light_mask = 8
+visibility_layer = 8
+use_parent_material = true
 texture = ExtResource("7_jpeqn")
 
 [node name="Body(7)" type="Sprite2D" parent="Sprites"]
 visible = false
+light_mask = 8
+visibility_layer = 8
+use_parent_material = true
 texture = ExtResource("8_4ckpo")
 
 [node name="Body(8)" type="Sprite2D" parent="Sprites"]
 visible = false
+light_mask = 8
+visibility_layer = 8
+use_parent_material = true
 texture = ExtResource("9_v246k")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

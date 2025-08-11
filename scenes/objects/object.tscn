@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bokfkixk25s8k"]
+[gd_scene load_steps=6 format=3 uid="uid://bokfkixk25s8k"]
 
 [ext_resource type="Script" uid="uid://4cimcrk3642x" path="res://scenes/objects/object_class.gd" id="1_3fnx3"]
 [ext_resource type="Texture2D" uid="uid://b5r0s2bjutwd4" path="res://assets/objects/mesa 1.png" id="1_toi83"]
@@ -14,7 +14,11 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 2
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3fnx3"]
+polygon = PackedVector2Array(-12, 39, -12, -40, 12, -40, 12, 39)
+
 [node name="Object" type="StaticBody2D"]
+collision_layer = 2147483649
 script = ExtResource("1_3fnx3")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -25,3 +29,8 @@ shape = SubResource("RectangleShape2D_3fnx3")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_toi83")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+occluder = SubResource("OccluderPolygon2D_3fnx3")
+occluder_light_mask = 786441

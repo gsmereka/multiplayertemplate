@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtqm1or4gm4ls"]
+
+[ext_resource type="Texture2D" uid="uid://b8qmt43d1ni38" path="res://assets/firepitch.png" id="1_hh5u1"]
+[ext_resource type="Texture2D" uid="uid://jgnygd7kf2xa" path="res://assets/light.png" id="2_4kyjk"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4kyjk"]
+blend_mode = 1
+light_mode = 2
+
+[node name="Firepitch" type="Sprite2D"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_hh5u1")
+
+[node name="Light" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.388235, 0, 0.341176)
+z_index = 1
+material = SubResource("CanvasItemMaterial_4kyjk")
+scale = Vector2(5, 5)
+texture = ExtResource("2_4kyjk")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.5
+range_item_cull_mask = 786433
+shadow_enabled = true
+shadow_item_cull_mask = 786433
+texture = ExtResource("2_4kyjk")
+texture_scale = 10.0

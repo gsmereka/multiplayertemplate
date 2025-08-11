@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl67pf80ytuum"]
+
+[ext_resource type="Script" uid="uid://pauls5pivwy0" path="res://scenes/Interface/points_counter.gd" id="1_0cxal"]
+
+[node name="PointsCounter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_0cxal")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 446.0
+offset_bottom = 158.0
+
+[node name="PlayerPoints" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Player - 0"
+
+[node name="PlayerPoints2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Player - 0"
+
+[node name="PlayerPoints3" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Player - 0"
+
+[node name="PlayerPoints4" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Player - 0"
+
+[node name="PlayerPoints5" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Player - 0"
+
+[node name="PlayerPoints6" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Player - 0"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://wsqekb8cav1t"]
+[gd_scene load_steps=25 format=3 uid="uid://wsqekb8cav1t"]
 
 [ext_resource type="Texture2D" uid="uid://c48ucov8jdbr0" path="res://assets/player/player.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://b24nt2q2yh8wf" path="res://scenes/player/player.gd" id="1_dovo2"]
@@ -8,15 +8,21 @@
 [ext_resource type="Script" uid="uid://d23s71hk84b6x" path="res://scenes/player/inputs.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://d1pqf47bbrtbe" path="res://scenes/player/states/FiniteStateMachine.gd" id="3_lvxji"]
 [ext_resource type="Texture2D" uid="uid://78dlafcg4suy" path="res://assets/player/player - para o outro lado.png" id="3_qek5x"]
+[ext_resource type="PackedScene" uid="uid://bl67pf80ytuum" path="res://scenes/Interface/points_counter.tscn" id="4_fcs02"]
 [ext_resource type="Script" uid="uid://c0x4xfbeiv7ud" path="res://scenes/player/states/state_idle.gd" id="4_p47bc"]
 [ext_resource type="Script" uid="uid://c3vd0cp82i2d7" path="res://scenes/player/states/freeze.gd" id="5_75vfm"]
 [ext_resource type="Texture2D" uid="uid://5jbkwel4cdwy" path="res://assets/cw.png" id="5_h17s1"]
 [ext_resource type="Script" uid="uid://10ocq4ldvl4k" path="res://scenes/player/states/state_death_cam.gd" id="9_h17s1"]
+[ext_resource type="Script" uid="uid://b2vgwhfsw85tc" path="res://scenes/player/small_l.gd" id="13_ugbui"]
+[ext_resource type="Texture2D" uid="uid://jgnygd7kf2xa" path="res://assets/light.png" id="14_ugbui"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_h17s1"]
 properties/0/path = NodePath("Fire:visible")
 properties/0/spawn = true
 properties/0/replication_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fm80t"]
+light_mode = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8afob"]
 radius = 27.2947
@@ -43,6 +49,9 @@ properties/5/replication_mode = 2
 properties/6/path = NodePath(".:hp")
 properties/6/spawn = true
 properties/6/replication_mode = 2
+properties/7/path = NodePath("Sprite:visible")
+properties/7/spawn = true
+properties/7/replication_mode = 2
 
 [sub_resource type="GDScript" id="GDScript_je7p5"]
 script/source = "extends State
@@ -171,8 +180,20 @@ func Craft():
 	pass
 "
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputs", "states", "camera", "collision_shape", "canvas", "interface", "loadingScene", "weapon")]
-collision_layer = 0
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ipuyi"]
+closed = false
+polygon = PackedVector2Array(0, 0, 1000, 0)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_67hjq"]
+closed = false
+polygon = PackedVector2Array(0, -5, 0, 5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gx1jg"]
+blend_mode = 2
+light_mode = 2
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputs", "states", "camera", "collision_shape", "canvas", "interface", "loadingScene", "weapon", "vision", "sprite")]
+collision_layer = 2147483648
 motion_mode = 1
 platform_on_leave = 2
 platform_floor_layers = 4294967040
@@ -185,9 +206,10 @@ canvas = NodePath("CanvasLayer")
 interface = NodePath("CanvasLayer/Control")
 loadingScene = NodePath("CanvasLayer/Control/Loading")
 weapon = NodePath("Weapon")
+vision = NodePath("Vision")
+sprite = NodePath("Sprite")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -212,11 +234,14 @@ texture = ExtResource("2_0owmy")
 [node name="PortraitFrame" parent="CanvasLayer/Control" instance=ExtResource("3_fm80t")]
 visible = false
 
+[node name="PointsCounter" parent="CanvasLayer/Control" instance=ExtResource("4_fcs02")]
+
 [node name="Weapon" type="Node2D" parent="."]
 script = ExtResource("3_5gtgg")
 
 [node name="RayCast2D" type="RayCast2D" parent="Weapon"]
 target_position = Vector2(1200, 0)
+collision_mask = 2147483649
 
 [node name="Fire" type="Sprite2D" parent="Weapon"]
 visible = false
@@ -229,13 +254,19 @@ texture = ExtResource("5_h17s1")
 replication_config = SubResource("SceneReplicationConfig_h17s1")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+light_mask = 8
+visibility_layer = 8
+material = SubResource("CanvasItemMaterial_fm80t")
 position = Vector2(59, 0)
 rotation = 1.5708
 texture = ExtResource("1_8afob")
 
 [node name="Player-ParaOOutroLado" type="Sprite2D" parent="Sprite"]
-modulate = Color(80, 80, 80, 0.536)
+modulate = Color(0.89, 0.89, 0.89, 1)
 show_behind_parent = true
+light_mask = 8
+visibility_layer = 8
+use_parent_material = true
 position = Vector2(5.00014, 38)
 scale = Vector2(3.1, 2)
 texture = ExtResource("3_qek5x")
@@ -270,7 +301,7 @@ metadata/_custom_type_script = "uid://s1feqfw0yldx"
 script = ExtResource("4_p47bc")
 player = NodePath("../..")
 inputs = NodePath("../../Inputs")
-vision = NodePath("../../Vision")
+vision = NodePath("../../Vision/Vision")
 portrait = NodePath("../../CanvasLayer/Control/PortraitFrame")
 metadata/_custom_type_script = "uid://s1feqfw0yldx"
 
@@ -284,10 +315,94 @@ metadata/_custom_type_script = "uid://s1feqfw0yldx"
 script = ExtResource("5_75vfm")
 player = NodePath("../..")
 
-[node name="Vision" type="RayCast2D" parent="."]
-target_position = Vector2(1200, 0)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
+
+[node name="Vision" type="Node2D" parent="."]
+
+[node name="FOV" type="Node2D" parent="Vision"]
+
+[node name="small_l" type="PointLight2D" parent="Vision/FOV"]
+position = Vector2(-10, 0)
+blend_mode = 2
+range_item_cull_mask = 8
+shadow_enabled = true
+shadow_item_cull_mask = 8
+texture = ExtResource("5_h17s1")
+offset = Vector2(10, 0)
+texture_scale = 0.15
+script = ExtResource("13_ugbui")
+
+[node name="small_l2" type="PointLight2D" parent="Vision/FOV"]
+position = Vector2(-10, 0)
+blend_mode = 2
+range_item_cull_mask = 8
+shadow_enabled = true
+shadow_item_cull_mask = 8
+texture = ExtResource("14_ugbui")
+offset = Vector2(10, 0)
+texture_scale = 1.5
+
+[node name="big_l" type="PointLight2D" parent="Vision/FOV"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(34, 0)
+blend_mode = 2
+range_item_cull_mask = 8
+shadow_enabled = true
+shadow_item_cull_mask = 8
+texture = ExtResource("5_h17s1")
+texture_scale = 3.0
+
+[node name="left" type="LightOccluder2D" parent="Vision/FOV"]
+position = Vector2(0, -5)
+rotation = -0.785398
+occluder = SubResource("OccluderPolygon2D_ipuyi")
+occluder_light_mask = 8
+
+[node name="right" type="LightOccluder2D" parent="Vision/FOV"]
+position = Vector2(0, 5)
+rotation = 0.785398
+occluder = SubResource("OccluderPolygon2D_ipuyi")
+occluder_light_mask = 8
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Vision/FOV"]
+occluder = SubResource("OccluderPolygon2D_67hjq")
+occluder_light_mask = 8
+
+[node name="Vision" type="RayCast2D" parent="Vision"]
+target_position = Vector2(1200, 0)
+collision_mask = 2147483649
+
+[node name="PointLight2D" type="PointLight2D" parent="Vision"]
+blend_mode = 2
+range_item_cull_mask = 524288
+shadow_enabled = true
+shadow_item_cull_mask = 524289
+texture = ExtResource("14_ugbui")
+texture_scale = 0.5
+
+[node name="CanvasGroup2" type="CanvasGroup" parent="Vision"]
+z_index = 50
+
+[node name="Shadow" type="ColorRect" parent="Vision/CanvasGroup2"]
+offset_left = -2341.0
+offset_top = -1571.0
+offset_right = 2155.0
+offset_bottom = 1535.0
+pivot_offset = Vector2(1543, 962)
+color = Color(0, 0, 0, 0.270588)
+
+[node name="ContrastVision" type="ColorRect" parent="Vision/CanvasGroup2"]
+light_mask = 8
+visibility_layer = 8
+material = SubResource("CanvasItemMaterial_gx1jg")
+offset_left = -2345.0
+offset_top = -1546.0
+offset_right = 2173.0
+offset_bottom = 1564.0
+
+[node name="CraftPosition" type="Marker2D" parent="Vision"]
+position = Vector2(100, 0)

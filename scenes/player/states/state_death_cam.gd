@@ -4,82 +4,93 @@ extends State
 @export var inputs: Node
 @onready var MOTION_SPEED = player.MOTION_SPEED
 
-var death_cam: Camera2D = null
-var current_cam_index: int = 0
 var alive_players: Array = []
+var current_player: Player = null
 
 func Enter():
-	player.visible = false
+	# Esconde e desativa o player atual
+	player.sprite.hide()
+	player.vision.hide()
 	DropBody()
 	player.collision_shape.disabled = true
 	player.modulate = Color(1, 1, 1)
 	player.camera.enabled = false
 
 	_update_alive_players()
-	_select_random_death_cam()
+	_select_random_alive_player()
 
 func Update(_delta: float):
 	if Input.is_action_just_pressed("space"):
 		Revive()
 
 	if Input.is_action_just_pressed("left_click"):
-		_update_alive_players()
-
-		if alive_players.size() == 0:
-			if death_cam:
-				death_cam.enabled = false
-				death_cam = null
-			return
-
-		# Desativa a câmera atual
-		if death_cam:
-			death_cam.enabled = false
-
-		# Troca para o próximo player vivo
-		current_cam_index = (current_cam_index + 1) % alive_players.size()
-		var next_player = alive_players[current_cam_index]
-		death_cam = next_player.camera
-		if death_cam:
-			death_cam.enabled = true
+		_cycle_next_alive_player()
 
 func Exit():
 	pass
 
 func Revive():
 	player.teleport_to_random_spawn_point()
-	player.visible = true
+	player.sprite.show()
 	player.collision_shape.disabled = false
 	player.states.change_state(self, "idle")
-	if death_cam:
-		death_cam.enabled = false
-		death_cam = null
+
+	if current_player and current_player.camera:
+		current_player.vision.hide()
+		current_player.camera.enabled = false
+	current_player = null
+	player.vision.show()
 	player.camera.enabled = true
 
-# Atualiza a lista de players vivos (visíveis)
 func _update_alive_players():
 	alive_players.clear()
 	for child in player.get_parent().get_children():
 		if child is Player:
-			var cam = child.camera
-			if cam and cam is Camera2D:
+			if child.camera and child.camera is Camera2D:
 				alive_players.append(child)
 
-# Escolhe uma câmera aleatória de um player vivo
-func _select_random_death_cam():
+func _select_random_alive_player():
 	if alive_players.size() > 0:
-		current_cam_index = randi() % alive_players.size()
-		var chosen_player = alive_players[current_cam_index]
-		death_cam = chosen_player.camera
-		if death_cam:
-			death_cam.enabled = true
+		var random_index = randi() % alive_players.size()
+		_set_current_player(alive_players[random_index])
 	else:
-		death_cam = null
+		_set_current_player(null)
+
+func _cycle_next_alive_player():
+	_update_alive_players()
+
+	if alive_players.size() == 0:
+		_set_current_player(null)
+		return
+
+	var current_index = alive_players.find(current_player)
+	if current_index == -1:
+		current_index = 0
+	else:
+		current_index = (current_index + 1) % alive_players.size()
+
+	_set_current_player(alive_players[current_index])
+
+func _set_current_player(new_player: Player):
+	# Desativa câmera do jogador anterior
+	if current_player and current_player.camera:
+		current_player.vision.hide()
+		current_player.camera.enabled = false
+
+	current_player = new_player
+
+	# Ativa câmera do novo jogador observado
+	if current_player and current_player.camera:
+		current_player.vision.show()
+		current_player.camera.enabled = true
 
 func DropBody():
 	var spawn_pos := player.global_position
 	var rot := player.rotation
-	#var estado := Ja esta aleatorio. mas posso escolher o metodo depois por aqui
-	ObjectRegistry.request_spawn.rpc_id(1, ObjectRegistry.ObjectType.BODY, spawn_pos, rot, str(randi() % 8))
-
-	#ObjectRegistry.request_spawn.rpc_id(1, ObjectRegistry.ObjectType.BODY, spawn_pos, rot, "1")
-	pass
+	ObjectRegistry.request_spawn.rpc_id(
+		1,
+		ObjectRegistry.ObjectType.BODY,
+		spawn_pos,
+		rot,
+		str(randi() % 8)
+	)
