@@ -61,8 +61,7 @@ func Exit():
 
 var selected_object_type := ObjectRegistry.ObjectType.DEFAULT  # Default
 func Craft():
-	var offset := Vector2(50,0)
-	var spawn_pos := player.global_position + offset
+	var spawn_pos : Vector2 = $"../../Vision/CraftPosition".global_position
 	var rot := player.rotation
 	var estado := "1"
 	ObjectRegistry.request_spawn.rpc_id(1,selected_object_type, spawn_pos, rot, estado)

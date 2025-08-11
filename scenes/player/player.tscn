@@ -403,3 +403,6 @@ offset_left = -2345.0
 offset_top = -1546.0
 offset_right = 2173.0
 offset_bottom = 1564.0
+
+[node name="CraftPosition" type="Marker2D" parent="Vision"]
+position = Vector2(100, 0)
