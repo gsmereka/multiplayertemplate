@@ -36,7 +36,7 @@ MULTIPLAYER"
 label_settings = SubResource("LabelSettings_o1atq")
 horizontal_alignment = 1
 
-[node name="WhatConnection" type="Control" parent="." node_paths=PackedStringArray("SteamNode", "ENetNode", "lobby", "EnetInput", "SteamInput")]
+[node name="WhatConnection" type="Control" parent="." node_paths=PackedStringArray("SteamNode", "ENetNode", "WebSocketNode", "lobby", "EnetInput", "SteamInput", "WebSocketInput")]
 layout_mode = 2
 anchors_preset = 0
 offset_top = 686.0
@@ -45,9 +45,11 @@ offset_bottom = 686.0
 script = ExtResource("2_nsnfc")
 SteamNode = NodePath("../Steam")
 ENetNode = NodePath("../Enet")
+WebSocketNode = NodePath("../WebSocket")
 lobby = NodePath("..")
 EnetInput = NodePath("../Enet/Players/Lobby Id")
 SteamInput = NodePath("../Steam/Players/Lobby Id")
+WebSocketInput = NodePath("../WebSocket/Players/Lobby Id")
 
 [node name="Steam" type="Button" parent="WhatConnection"]
 layout_mode = 1
@@ -77,6 +79,21 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "ENet"
+
+[node name="Websocket" type="Button" parent="WhatConnection"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -41.0
+offset_top = 99.5
+offset_right = 41.0
+offset_bottom = 152.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Browser"
 
 [node name="Steam" type="Control" parent="."]
 visible = false
@@ -202,6 +219,68 @@ theme_override_font_sizes/font_size = 32
 placeholder_text = "Enter IP Address to Join"
 alignment = 1
 
+[node name="WebSocket" type="Control" parent="."]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 93.0
+offset_bottom = 62.0
+
+[node name="Players" type="Panel" parent="WebSocket"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+
+[node name="Host" type="Button" parent="WebSocket/Players"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = 86.5
+offset_right = 91.0
+offset_bottom = 139.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Host Game"
+
+[node name="Join Lobby" type="Button" parent="WebSocket/Players"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = 150.5
+offset_right = 88.0
+offset_bottom = 203.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Join Game"
+
+[node name="Lobby Id" type="LineEdit" parent="WebSocket/Players"]
+layout_mode = 0
+offset_left = -213.0
+offset_top = 215.0
+offset_right = 213.0
+offset_bottom = 270.0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Enter Address to Join"
+alignment = 1
+
 [node name="Name" type="LineEdit" parent="."]
 layout_mode = 2
 offset_left = 773.0
@@ -215,7 +294,10 @@ alignment = 1
 
 [connection signal="pressed" from="WhatConnection/Steam" to="WhatConnection" method="_on_steam_pressed"]
 [connection signal="pressed" from="WhatConnection/ENet" to="WhatConnection" method="_on_e_net_pressed"]
+[connection signal="pressed" from="WhatConnection/Websocket" to="WhatConnection" method="_on_websocket_pressed"]
 [connection signal="pressed" from="Steam/Players/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="Steam/Players/Join Lobby" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="Enet/Players/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="Enet/Players/Join Lobby" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="WebSocket/Players/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="WebSocket/Players/Join Lobby" to="." method="_on_join_pressed"]

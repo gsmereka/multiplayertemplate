@@ -23,6 +23,7 @@ GameState="*res://scripts/game/gamestate.gd"
 EnetNetwork="*res://scripts/network/enet_network.gd"
 PlayerRegistry="*res://scripts/game/player_resgistry.gd"
 ObjectRegistry="*res://scripts/game/object_registry.gd"
+WebSocketNetwork="*res://scripts/network/websocket_network.gd"
 
 [debug]
 

@@ -14,6 +14,8 @@ func _setup_network(net : String):
 	if net == "Steam":
 		network = SteamNetwork
 		network.setup()
+	elif net == "Web":
+		network = WebSocketNetwork
 	else:
 		network = EnetNetwork;
 	if !network:

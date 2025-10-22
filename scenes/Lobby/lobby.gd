@@ -17,9 +17,11 @@ func _on_host_pressed():
 	GameState.host_game(name_input.text)
 
 func _on_join_pressed():
-	var addr : String = ""
+	var addr : String = "127.0.0.1"
 	if addres_input:
 		addr = addres_input.text
+	if addr == "":
+		addr = "127.0.0.1"
 	GameState.join_game(name_input.text, addr)
 
 func _on_error(message: String):
