@@ -3,18 +3,19 @@ extends NetworkInterface
 var peer: SteamMultiplayerPeer
 
 
-
+var running : bool = false
 var steam_id := 0
 var steam_username : String = ""
 
 func _process(delta: float) -> void:
-	Steam.run_callbacks()
+	if running:
+		Steam.run_callbacks()
 
-func _ready():
-	#Steam.steamInitEx(true, 480)
+func setup():
+	running = true
+	Steam.steamInitEx(true, 480)
 	steam_id = Steam.getSteamID()
 	steam_username = Steam.getPersonaName()
-	#print("Macarrao")
 	Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_created.connect(_on_lobby_created)
 	Steam.join_requested.connect(_on_join_requested)

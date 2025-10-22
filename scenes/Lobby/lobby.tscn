@@ -1,0 +1,221 @@
+[gd_scene load_steps=4 format=3 uid="uid://gjuft281lsbu"]
+
+[ext_resource type="Script" uid="uid://sqtgt8ijknx7" path="res://scenes/Lobby/lobby.gd" id="1_o1atq"]
+[ext_resource type="Script" uid="uid://dmff2nxotsfl1" path="res://scenes/Lobby/what_connection.gd" id="2_nsnfc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o1atq"]
+font_size = 64
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(4, 2)
+
+[node name="Lobby" type="Control" node_paths=PackedStringArray("name_input")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_o1atq")
+name_input = NodePath("Name")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -214.0
+offset_top = 211.0
+offset_right = 214.0
+offset_bottom = 390.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "TEMPLATE
+MULTIPLAYER"
+label_settings = SubResource("LabelSettings_o1atq")
+horizontal_alignment = 1
+
+[node name="WhatConnection" type="Control" parent="." node_paths=PackedStringArray("SteamNode", "ENetNode", "lobby", "EnetInput", "SteamInput")]
+layout_mode = 2
+anchors_preset = 0
+offset_top = 686.0
+offset_right = 1920.0
+offset_bottom = 686.0
+script = ExtResource("2_nsnfc")
+SteamNode = NodePath("../Steam")
+ENetNode = NodePath("../Enet")
+lobby = NodePath("..")
+EnetInput = NodePath("../Enet/Players/Lobby Id")
+SteamInput = NodePath("../Steam/Players/Lobby Id")
+
+[node name="Steam" type="Button" parent="WhatConnection"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.5
+offset_right = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Steam
+"
+
+[node name="ENet" type="Button" parent="WhatConnection"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -41.0
+offset_top = 35.5
+offset_right = 41.0
+offset_bottom = 88.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "ENet"
+
+[node name="Steam" type="Control" parent="."]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 93.0
+offset_bottom = 62.0
+
+[node name="Players" type="Panel" parent="Steam"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+
+[node name="Host" type="Button" parent="Steam/Players"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = 86.5
+offset_right = 91.0
+offset_bottom = 139.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Host Game"
+
+[node name="Join Lobby" type="Button" parent="Steam/Players"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = 150.5
+offset_right = 88.0
+offset_bottom = 203.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Join Game"
+
+[node name="Lobby Id" type="LineEdit" parent="Steam/Players"]
+layout_mode = 0
+offset_left = -187.0
+offset_top = 214.5
+offset_right = 187.0
+offset_bottom = 269.5
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Lobby ID"
+alignment = 1
+
+[node name="Enet" type="Control" parent="."]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 93.0
+offset_bottom = 62.0
+
+[node name="Players" type="Panel" parent="Enet"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+
+[node name="Host" type="Button" parent="Enet/Players"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = 86.5
+offset_right = 91.0
+offset_bottom = 139.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Host Game"
+
+[node name="Join Lobby" type="Button" parent="Enet/Players"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = 150.5
+offset_right = 88.0
+offset_bottom = 203.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Join Game"
+
+[node name="Lobby Id" type="LineEdit" parent="Enet/Players"]
+layout_mode = 0
+offset_left = -213.0
+offset_top = 215.0
+offset_right = 213.0
+offset_bottom = 270.0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Enter IP Address to Join"
+alignment = 1
+
+[node name="Name" type="LineEdit" parent="."]
+layout_mode = 2
+offset_left = 773.0
+offset_top = 513.0
+offset_right = 1147.0
+offset_bottom = 568.0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Player Name"
+alignment = 1
+
+[connection signal="pressed" from="WhatConnection/Steam" to="WhatConnection" method="_on_steam_pressed"]
+[connection signal="pressed" from="WhatConnection/ENet" to="WhatConnection" method="_on_e_net_pressed"]
+[connection signal="pressed" from="Steam/Players/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Steam/Players/Join Lobby" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="Enet/Players/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Enet/Players/Join Lobby" to="." method="_on_join_pressed"]
