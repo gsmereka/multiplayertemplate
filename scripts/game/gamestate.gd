@@ -45,6 +45,7 @@ func _on_error(message: String):
 	emit_signal("error_occurred", message)
 
 func _on_players_updated():
+	print(PlayerRegistry.players)
 	print("Player list updated.")
 
 @rpc("call_local", "any_peer", "reliable")
