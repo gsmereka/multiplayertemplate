@@ -8,12 +8,16 @@ var players_points := {}
 func register_player(id: int, name: String):
 	players[id] = _make_string_unique(name)
 	players_points[id] = 0 # inicializa pontuação
-	if multiplayer.is_server():
-		update_points_to_new_player.rpc_id(id, players_points)
 	emit_signal("players_updated")
 
 func unregister_player(id: int):
 	players.erase(id)
+	players_points.erase(id)
+	emit_signal("players_updated")
+
+func replace_roster(new_players: Dictionary, new_points: Dictionary) -> void:
+	players = new_players.duplicate()
+	players_points = new_points.duplicate()
 	emit_signal("players_updated")
 
 func _make_string_unique(name2: String) -> String:

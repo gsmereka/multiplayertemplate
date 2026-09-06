@@ -382,7 +382,6 @@ range_item_cull_mask = 524288
 shadow_enabled = true
 shadow_item_cull_mask = 524289
 texture = ExtResource("14_ugbui")
-texture_scale = 0.5
 
 [node name="CanvasGroup2" type="CanvasGroup" parent="Vision"]
 z_index = 50

@@ -12,15 +12,10 @@ func join_game(_player_name: String, address: String = "127.0.0.1") -> void:
 	#print("Criando ENet peer...")
 	peer = ENetMultiplayerPeer.new()
 
-	#print("Tentando conectar no endereço %s..." % address)
-	var error2 = peer.create_client(address, 10567)
-	#print("Resultado da conexão: ", error2) # Deve retornar OK (0)
-
-	if error2 != OK:
+	var error = peer.create_client(address, 10567)
+	if error != OK:
 		push_error("Erro ao criar cliente ENet: %s" % error)
 		return
-
-	#print("Configurando multiplayer peer...")
 	multiplayer.set_multiplayer_peer(peer)
 
 	#print("Aguardando conexão com o servidor...")
