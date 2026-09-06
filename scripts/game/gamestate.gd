@@ -11,7 +11,18 @@ signal game_ended()
 signal error_occurred(message)
 
 func _setup_network(net : String):
-	
+	if network:
+		if network.connected.is_connected(_on_connected):
+			network.connected.disconnect(_on_connected)
+		if network.error.is_connected(_on_error):
+			network.error.disconnect(_on_error)
+	if PlayerRegistry.players_updated.is_connected(_on_players_updated):
+		PlayerRegistry.players_updated.disconnect(_on_players_updated)
+	if multiplayer.peer_connected.is_connected(_on_peer_connected):
+		multiplayer.peer_connected.disconnect(_on_peer_connected)
+	if multiplayer.peer_disconnected.is_connected(_on_peer_disconnected):
+		multiplayer.peer_disconnected.disconnect(_on_peer_disconnected)
+
 	if net == "Steam":
 		network = SteamNetwork
 		network.setup()
